@@ -1,5 +1,6 @@
 @use "@/assets/scss/global";
 @use "@/assets/scss/variables";
+@use "@/assets/scss/functions";
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
@@ -12,11 +13,20 @@
 
 body {
   width: 100%;
-  min-height: 100vh;
-  padding: var(--page-padding-vertical) 0;
+
   background: variables.$bg-primary;
   color: variables.$text-base;
 
-  display: flex;
-  flex-direction: column;
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+main {
+  @include functions.grid-container();
+
+  padding: var(--page-padding-vertical) var(--page-padding-horizontal);
+  flex: 1 0 auto;
 }

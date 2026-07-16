@@ -5,7 +5,6 @@ export default function PageLayout() {
   return (
     <>
       <Header />
-      <header>456</header>
       <main>
         <Outlet />
       </main>

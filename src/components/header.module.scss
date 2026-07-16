@@ -3,7 +3,7 @@
 .header {
   @include grid-container;
   width: 100%;
-  padding: pad(4) var(--page-padding-horizonal);
+  padding: pad(4) var(--page-padding-horizontal);
 
   background: variables.$bg-inverted;
 

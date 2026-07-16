@@ -1,0 +1,12 @@
+.info_introduction {
+  @include grid-col(12);
+  @include grid-col(8, $breakpoint: "lg");
+}
+
+.info_picture {
+  @include grid-col(12);
+  @include grid-col(4, $breakpoint: "lg");
+
+  aspect-ratio: 1/1;
+  background: green;
+}

@@ -2,8 +2,8 @@
 @use "@/assets/scss/functions";
 
 :root {
-  --page-padding-horizonal: #{functions.pad(8)};
-  --page-padding-vertical: 0;
+  --page-padding-horizontal: #{functions.pad(8)};
+  --page-padding-vertical: #{functions.pad(12)};
 
   --padding-step: #{variables.$padding-step};
 }
