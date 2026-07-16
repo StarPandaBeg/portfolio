@@ -1,0 +1,9 @@
+@use "@/assets/scss/variables";
+@use "@/assets/scss/functions";
+
+:root {
+  --page-padding-horizonal: #{functions.pad(8)};
+  --page-padding-vertical: 0;
+
+  --padding-step: #{variables.$padding-step};
+}

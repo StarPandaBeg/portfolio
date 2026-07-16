@@ -1,0 +1,109 @@
+@use "sass:map";
+@use "@/assets/scss/variables";
+
+@function pad($step: 1) {
+  @return $step * variables.$padding-step;
+}
+
+// MIXINS
+
+@mixin grid-container() {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(#{variables.$grid-columns}, 1fr);
+}
+
+@mixin breakpoint-up($breakpoint) {
+  @if not map.has-key(variables.$breakpoints, $breakpoint) {
+    @error "Unknown breakpoint `#{$breakpoint}`. Available: #{map.keys(variables.$breakpoints)}.";
+  }
+
+  @media (min-width: map.get(variables.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin _grid-col-rule($span, $start) {
+  @if $span < 1 or $span > variables.$grid-columns {
+    @error "$span must be between 1 and #{variables.$grid-columns}.";
+  }
+
+  @if $start {
+    grid-column: #{$start} / span #{$span};
+  } @else {
+    grid-column: span #{$span} / span #{$span};
+  }
+}
+
+@mixin grid-col($span, $start: null, $breakpoint: null) {
+  @if $breakpoint {
+    @include breakpoint-up($breakpoint) {
+      @include _grid-col-rule($span, $start);
+    }
+  } @else {
+    @include _grid-col-rule($span, $start);
+  }
+}
+
+@mixin app-button($variant: "primary", $size: "md") {
+  $sizes: (
+    "sm": (
+      "padding": pad(2) pad(3),
+      "font-size": variables.$text-sm,
+    ),
+    "md": (
+      "padding": pad(3) pad(4),
+      "font-size": variables.$text-md,
+    ),
+    "lg": (
+      "padding": pad(4) pad(6),
+      "font-size": variables.$text-lg,
+    ),
+  );
+
+  @if not map.has-key($sizes, $size) {
+    @error "Unknown button size `#{$size}`. Available: #{map.keys($sizes)}.";
+  }
+
+  @if not map.has-key(variables.$button-variants, $variant) {
+    @error "Unknown button variant `#{$variant}`. Available: #{map.keys(variables.$button-variants)}.";
+  }
+
+  $theme: map.get(variables.$button-variants, $variant);
+
+  padding: map.get($sizes, $size, "padding");
+  outline: none;
+  border: 1px solid map.get($theme, "border");
+  border-radius: variables.$radius-medium;
+
+  background-color: map.get($theme, "background");
+  color: map.get($theme, "color");
+
+  font: inherit;
+  font-size: map.get($sizes, $size, "font-size");
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition:
+    background-color variables.$transition,
+    border-color variables.$transition,
+    color variables.$transition,
+    opacity variables.$transition;
+
+  &:hover:not(:disabled) {
+    border-color: map.get($theme, "hover-border");
+    background-color: map.get($theme, "hover-background");
+    color: map.get($theme, "hover-color");
+    opacity: map.get($theme, "hover-opacity");
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

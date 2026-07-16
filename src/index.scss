@@ -1,13 +1,22 @@
+@use "@/assets/scss/global";
+@use "@/assets/scss/variables";
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-@import url(./assets/scss/import.scss);
-
-:root {
-}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--page-padding-vertical) 0;
+  background: variables.$bg-primary;
+  color: variables.$text-base;
+
+  display: flex;
+  flex-direction: column;
 }

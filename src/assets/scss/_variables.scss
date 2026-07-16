@@ -1,2 +1,63 @@
-:root {
-}
+$padding-step: 4px !default;
+$transition: 0.2s !default;
+$radius-medium: 12px !default;
+
+$grid-columns: 12 !default;
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+) !default;
+
+// Colors
+$color-primary: #008aff;
+
+$bg-primary: #fcfcfc;
+$bg-muted: #303030;
+$bg-inverted: #000000;
+
+$text-primary: $color-primary;
+$text-base: #cccccc;
+$text-secondary: #555555;
+$text-accent: #ffffff;
+$text-muted: #888888;
+
+$button-variants: (
+  "primary": (
+    "background": $color-primary,
+    "border": $color-primary,
+    "color": $text-accent,
+    "hover-background": $color-primary,
+    "hover-border": $color-primary,
+    "hover-color": $text-accent,
+    "hover-opacity": 0.85,
+  ),
+  "secondary": (
+    "background": transparent,
+    "border": $color-primary,
+    "color": $color-primary,
+    "hover-background": $color-primary,
+    "hover-border": $color-primary,
+    "hover-color": $text-accent,
+    "hover-opacity": 1,
+  ),
+  "muted": (
+    "background": $bg-muted,
+    "border": $bg-muted,
+    "color": $text-base,
+    "hover-background": $bg-muted,
+    "hover-border": $bg-muted,
+    "hover-color": $text-accent,
+    "hover-opacity": 1,
+  ),
+) !default;
+
+// Sizes
+$heading-xl: 64px;
+$heading-lg: 48px;
+$heading-md: 32px;
+
+$text-lg: 1.25rem;
+$text-md: 1rem;
+$text-sm: 0.875rem;
