@@ -1,0 +1,91 @@
+@use "@/assets/scss/variables";
+
+.contacts {
+  position: relative;
+  overflow: hidden;
+  padding: pad(7) pad(9);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pad(6);
+  align-items: center;
+
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  h2 {
+    max-width: 380px;
+    font-size: variables.$text-lg;
+    line-height: 1.2;
+  }
+
+  p {
+    color: variables.$text-secondary;
+    font-size: variables.$text-md;
+  }
+}
+
+.image {
+  justify-self: center;
+  width: min(260px, 80%);
+  align-self: end;
+}
+
+.list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: pad(2);
+  list-style: none;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    color: variables.$text-secondary;
+    text-decoration: none;
+
+    &:hover span {
+      color: variables.$text-primary;
+    }
+  }
+
+  strong {
+    color: variables.$text-accent;
+    font-size: variables.$text-md;
+    font-weight: 600;
+  }
+
+  span {
+    transition: color variables.$transition ease;
+  }
+}
+
+.button {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+}
+
+@include breakpoint-up("lg") {
+  .contacts {
+    grid-template-columns: 1.2fr 1fr 1fr auto;
+    gap: pad(8);
+  }
+
+  .image {
+    width: min(260px, 100%);
+    margin-bottom: calc(pad(7) * -1);
+  }
+
+  .button {
+    justify-self: end;
+  }
+}

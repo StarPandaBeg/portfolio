@@ -1,15 +1,21 @@
 import githubIcon from "@/assets/images/github.svg";
 import hhIcon from "@/assets/images/hh.svg";
 import Button from "@/components/ui/button/button";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import hashNavigation from "../pages/index/hash-navigation";
 import styles from "./header.module.scss";
 
 export default function Header() {
+  const { hash, pathname } = useLocation();
   const pageUrl = (hash: string) => ({
     pathname: "/",
     hash: `#${hash}`,
   });
+  const scrollToCurrentHash = (targetHash: string) => {
+    if (pathname !== "/" || hash !== `#${targetHash}`) return;
+
+    document.getElementById(targetHash)?.scrollIntoView();
+  };
 
   return (
     <header className={styles.header}>
@@ -20,23 +26,48 @@ export default function Header() {
               <Link to={"/"}>Главная</Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["about"])}>Обо мне</Link>
+              <Link
+                to={pageUrl(hashNavigation["about"])}
+                onClick={() => scrollToCurrentHash(hashNavigation["about"])}
+              >
+                Обо мне
+              </Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["experience"])}>
+              <Link
+                to={pageUrl(hashNavigation["experience"])}
+                onClick={() =>
+                  scrollToCurrentHash(hashNavigation["experience"])
+                }
+              >
                 Опыт работы
               </Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["projects"])}>Проекты</Link>
+              <Link
+                to={pageUrl(hashNavigation["projects"])}
+                onClick={() => scrollToCurrentHash(hashNavigation["projects"])}
+              >
+                Проекты
+              </Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["technologies"])}>
+              <Link
+                to={pageUrl(hashNavigation["technologies"])}
+                onClick={() =>
+                  scrollToCurrentHash(hashNavigation["technologies"])
+                }
+              >
                 Технологии
               </Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["contacts"])}>Контакты</Link>
+              <Link
+                to={pageUrl(hashNavigation["contacts"])}
+                onClick={() => scrollToCurrentHash(hashNavigation["contacts"])}
+              >
+                Контакты
+              </Link>
             </li>
           </ul>
         </nav>
@@ -61,7 +92,13 @@ export default function Header() {
               </a>
             </li>
           </ul>
-          <Button variant="muted" size="sm">
+          <Button
+            variant="muted"
+            size="sm"
+            as="a"
+            href={`${import.meta.env.BASE_URL}#contacts`}
+            onClick={() => scrollToCurrentHash(hashNavigation["contacts"])}
+          >
             Связаться со мной
           </Button>
         </div>

@@ -1,7 +1,9 @@
 import { HiTruck } from "react-icons/hi2";
+import type { ContactEntry } from "./pages/index/components/contacts/contacts";
 import type { AchievementEntry } from "./pages/index/components/experience/achievement-card";
 import type { JobEntry } from "./pages/index/components/experience/job-row";
 import type { ProjectEntry } from "./pages/index/components/projects/project-card";
+import type { TechnologyGroup } from "./pages/index/components/technologies/technologies";
 
 export const jobs: JobEntry[] = [
   {
@@ -142,5 +144,47 @@ export const projects: ProjectEntry[] = [
     description: "B2B-платформа для управления логистическими операциями",
     stack: ["Angular", "TypeScript", "NodeJS"],
     href: "#",
+  },
+];
+
+export const technologies: TechnologyGroup[] = [
+  {
+    title: "Frontend",
+    items: [
+      "Angular",
+      "React",
+      "TypeScript",
+      "RxJS",
+      "SCSS",
+      "Vite",
+      "Ionic",
+      "Capacitor",
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      "NodeJS",
+      "Express",
+      "PostgreSQL",
+      "REST API",
+      "Docker",
+      "Sentry",
+      "Superset",
+      "Git",
+    ],
+  },
+];
+
+export const contacts: ContactEntry[] = [
+  {
+    label: "E-Mail",
+    value: "kostya.shmurakov@mail.ru",
+    href: "mailto:kostya.shmurakov@mail.ru",
+  },
+  {
+    label: "Telegram",
+    value: "@k_shmurakov",
+    href: "https://t.me/k_shmurakov",
   },
 ];

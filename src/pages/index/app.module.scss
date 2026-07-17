@@ -15,6 +15,8 @@
   }
 
   aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
   width: 100%;
   align-self: flex-end;
   border-radius: variables.$radius-medium;
@@ -29,5 +31,13 @@
 }
 
 .projects {
+  @include grid-col(12);
+}
+
+.technologies {
+  @include grid-col(12);
+}
+
+.contacts {
   @include grid-col(12);
 }
