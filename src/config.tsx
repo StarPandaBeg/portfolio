@@ -153,17 +153,24 @@ export const projects: ProjectEntry[] = [
     image: "/projects/plan_1.jpg",
   },
   {
+    title: "Календарь мероприятий",
+    description:
+      "Календарь мероприятий МинСпорта с автоматическим парсингом официального PDF-расписания",
+    stack: ["React", "SCSS", "TypeScript", "NestJS"],
+    image: "/projects/calendar_1.png",
+  },
+  {
     title: "ИИ-анализ инцидентов",
     description: "Автоматический анализ инцидентов на видео в реальном времени",
     stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
     image: "/projects/incident_1.png",
   },
   {
-    title: "Календарь мероприятий",
+    title: "Генератор случайных чисел",
     description:
-      "Календарь мероприятий МинСпорта с автоматическим парсингом официального PDF-расписания",
-    stack: ["React", "SCSS", "TypeScript", "NestJS"],
-    image: "/projects/calendar_1.png",
+      "Генерация лотерейных комбинаций, использующая видеопотоки в качестве элемента случайности",
+    stack: ["React", "React Query", "Tailwind", "MotionJS"],
+    image: "/projects/generator_1.jpg",
   },
 ];
 

@@ -92,3 +92,21 @@
   flex-wrap: wrap;
   gap: pad(2);
 }
+
+:global(.featured) {
+  .preview {
+    aspect-ratio: 16 / 8.5;
+  }
+
+  .content {
+    h3 {
+      font-size: variables.$heading-md;
+      line-height: 1.15;
+    }
+
+    p {
+      font-size: variables.$text-lg;
+      line-height: 1.3;
+    }
+  }
+}

@@ -16,7 +16,11 @@ export default function Projects({ className, ...props }: ProjectsProps) {
       </header>
       <div className={styles.grid}>
         {projects.map((project, index) => (
-          <ProjectCard project={project} key={`${project.title}-${index}`} />
+          <ProjectCard
+            className={index < 2 ? styles.featured : undefined}
+            project={project}
+            key={`${project.title}-${index}`}
+          />
         ))}
       </div>
     </section>
