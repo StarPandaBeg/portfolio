@@ -76,6 +76,7 @@
   outline: none;
   border: 1px solid map.get($theme, "border");
   border-radius: variables.$radius-medium;
+  text-decoration: none;
 
   background-color: map.get($theme, "background");
   color: map.get($theme, "color");

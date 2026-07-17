@@ -2,44 +2,53 @@ $padding-step: 4px !default;
 $transition: 0.2s !default;
 $radius-medium: 12px !default;
 
+$page-max-width: 1600px;
+
 $grid-columns: 12 !default;
 $breakpoints: (
   "sm": 576px,
   "md": 768px,
   "lg": 992px,
-  "xl": 1200px,
+  "xl": 1300px,
 ) !default;
 
 // Colors
 $color-primary: #008aff;
 
+$bg-white: #ffffff;
 $bg-primary: #fcfcfc;
+$bg-accent: #f4f7fc;
 $bg-muted: #303030;
 $bg-inverted: #000000;
+$bg-success: #e8fee7;
 
 $text-primary: $color-primary;
 $text-base: #cccccc;
 $text-secondary: #555555;
-$text-accent: #ffffff;
+$text-accent: #000000;
+$text-accent-inverted: #ffffff;
 $text-muted: #888888;
+$text-success: #15d20b;
+
+$border-accent: #b8c5dc;
 
 $button-variants: (
   "primary": (
     "background": $color-primary,
     "border": $color-primary,
-    "color": $text-accent,
+    "color": $text-accent-inverted,
     "hover-background": $color-primary,
     "hover-border": $color-primary,
-    "hover-color": $text-accent,
+    "hover-color": $text-accent-inverted,
     "hover-opacity": 0.85,
   ),
   "secondary": (
     "background": transparent,
-    "border": $color-primary,
-    "color": $color-primary,
-    "hover-background": $color-primary,
-    "hover-border": $color-primary,
-    "hover-color": $text-accent,
+    "border": $bg-muted,
+    "color": $text-secondary,
+    "hover-background": $bg-white,
+    "hover-border": $bg-muted,
+    "hover-color": $text-secondary,
     "hover-opacity": 1,
   ),
   "muted": (
@@ -54,9 +63,8 @@ $button-variants: (
 ) !default;
 
 // Sizes
-$heading-xl: 64px;
-$heading-lg: 48px;
-$heading-md: 32px;
+$heading-lg: 3rem;
+$heading-md: 2rem;
 
 $text-lg: 1.25rem;
 $text-md: 1rem;
