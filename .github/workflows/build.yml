@@ -46,7 +46,7 @@ jobs:
           test -n "$VITE_URL_HH"
 
       - name: Build
-        run: npm run build -- --base /portfolio/
+        run: npm run build
 
       - name: Add SPA fallback
         run: cp dist/index.html dist/404.html
