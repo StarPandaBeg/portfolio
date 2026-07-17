@@ -17,19 +17,23 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <Link to={pageUrl(hashNavigation["general"])}>Главная</Link>
+              <Link to={"/"}>Главная</Link>
             </li>
             <li>
               <Link to={pageUrl(hashNavigation["about"])}>Обо мне</Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["experience"])}>Опыт работы</Link>
+              <Link to={pageUrl(hashNavigation["experience"])}>
+                Опыт работы
+              </Link>
             </li>
             <li>
               <Link to={pageUrl(hashNavigation["projects"])}>Проекты</Link>
             </li>
             <li>
-              <Link to={pageUrl(hashNavigation["technologies"])}>Технологии</Link>
+              <Link to={pageUrl(hashNavigation["technologies"])}>
+                Технологии
+              </Link>
             </li>
             <li>
               <Link to={pageUrl(hashNavigation["contacts"])}>Контакты</Link>
