@@ -1,11 +1,15 @@
 import githubIcon from "@/assets/images/github.svg";
 import hhIcon from "@/assets/images/hh.svg";
 import Button from "@/components/ui/button/button";
+import { Link } from "react-router";
 import hashNavigation from "../pages/index/hash-navigation";
 import styles from "./header.module.scss";
 
 export default function Header() {
-  const pageUrl = (hash: string) => `${import.meta.env.BASE_URL}#${hash}`;
+  const pageUrl = (hash: string) => ({
+    pathname: "/",
+    hash: `#${hash}`,
+  });
 
   return (
     <header className={styles.header}>
@@ -13,22 +17,22 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <a href={pageUrl(hashNavigation["general"])}>Главная</a>
+              <Link to={pageUrl(hashNavigation["general"])}>Главная</Link>
             </li>
             <li>
-              <a href={pageUrl(hashNavigation["about"])}>Обо мне</a>
+              <Link to={pageUrl(hashNavigation["about"])}>Обо мне</Link>
             </li>
             <li>
-              <a href={pageUrl(hashNavigation["experience"])}>Опыт работы</a>
+              <Link to={pageUrl(hashNavigation["experience"])}>Опыт работы</Link>
             </li>
             <li>
-              <a href={pageUrl(hashNavigation["projects"])}>Проекты</a>
+              <Link to={pageUrl(hashNavigation["projects"])}>Проекты</Link>
             </li>
             <li>
-              <a href={pageUrl(hashNavigation["technologies"])}>Технологии</a>
+              <Link to={pageUrl(hashNavigation["technologies"])}>Технологии</Link>
             </li>
             <li>
-              <a href={pageUrl(hashNavigation["contacts"])}>Контакты</a>
+              <Link to={pageUrl(hashNavigation["contacts"])}>Контакты</Link>
             </li>
           </ul>
         </nav>

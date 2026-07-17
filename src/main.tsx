@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import PageLayout from "./layout.tsx";
 import App from "./pages/index/app.tsx";
+import ProjectsPage from "./pages/projects/projects.tsx";
 
 import "./index.scss";
 
@@ -12,6 +13,7 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route element={<PageLayout />}>
           <Route path="/" element={<App />} />
+          <Route path="/projects" element={<ProjectsPage />} />
         </Route>
       </Routes>
     </StrictMode>

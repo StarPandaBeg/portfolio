@@ -1,6 +1,7 @@
 import { HiTruck } from "react-icons/hi2";
 import type { AchievementEntry } from "./pages/index/components/experience/achievement-card";
 import type { JobEntry } from "./pages/index/components/experience/job-row";
+import type { ProjectEntry } from "./pages/index/components/projects/project-card";
 
 export const jobs: JobEntry[] = [
   {
@@ -114,5 +115,32 @@ export const achievements: AchievementEntry[] = [
         },
       ],
     },
+  },
+];
+
+export const projects: ProjectEntry[] = [
+  {
+    title: "Платформа логистики",
+    description: "B2B-платформа для управления логистическими операциями",
+    stack: ["Angular", "TypeScript", "NodeJS"],
+    href: "#",
+  },
+  {
+    title: "Платформа логистики",
+    description: "B2B-платформа для управления логистическими операциями",
+    stack: ["Angular", "TypeScript", "NodeJS"],
+    href: "#",
+  },
+  {
+    title: "Платформа логистики",
+    description: "B2B-платформа для управления логистическими операциями",
+    stack: ["Angular", "TypeScript", "NodeJS"],
+    href: "#",
+  },
+  {
+    title: "Платформа логистики",
+    description: "B2B-платформа для управления логистическими операциями",
+    stack: ["Angular", "TypeScript", "NodeJS"],
+    href: "#",
   },
 ];

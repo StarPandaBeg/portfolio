@@ -4,6 +4,7 @@ import InfoIntroduction from "./components/info-introduction/info-introduction";
 import styles from "./app.module.scss";
 import Experience from "./components/experience/experience";
 import InfoAbout from "./components/info-about/info-about";
+import Projects from "./components/projects/projects";
 import hashNavigation from "./hash-navigation";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         className={styles.experience}
         id={hashNavigation["experience"]}
       />
+      <Projects className={styles.projects} id={hashNavigation["projects"]} />
     </>
   );
 }

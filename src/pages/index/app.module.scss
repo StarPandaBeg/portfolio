@@ -27,3 +27,7 @@
 .experience {
   @include grid-col(12);
 }
+
+.projects {
+  @include grid-col(12);
+}
