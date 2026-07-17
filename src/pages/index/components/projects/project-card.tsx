@@ -8,7 +8,7 @@ export interface ProjectEntry {
   title: string;
   description: string;
   stack: string[];
-  href: string;
+  href?: string;
   image?: string;
 }
 
@@ -21,14 +21,30 @@ export default function ProjectCard({
   project,
   ...props
 }: ProjectCardProps) {
-  return (
-    <article className={cn(styles.card, className)} {...props}>
-      <a className={styles.preview} href={project.href} aria-label={project.title}>
-        {project.image && <img src={project.image} alt="" />}
+  const preview = (
+    <>
+      {project.image && <img src={project.image} alt="" />}
+      {project.href && (
         <span aria-hidden="true">
           <HiArrowUpRight />
         </span>
-      </a>
+      )}
+    </>
+  );
+
+  return (
+    <article className={cn(styles.card, className)} {...props}>
+      {project.href ? (
+        <a
+          className={styles.preview}
+          href={project.href}
+          aria-label={project.title}
+        >
+          {preview}
+        </a>
+      ) : (
+        <div className={styles.preview}>{preview}</div>
+      )}
       <div className={styles.content}>
         <h3>{project.title}</h3>
         <p>{project.description}</p>

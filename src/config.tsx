@@ -125,25 +125,45 @@ export const projects: ProjectEntry[] = [
     title: "Платформа логистики",
     description: "B2B-платформа для управления логистическими операциями",
     stack: ["Angular", "TypeScript", "NodeJS"],
-    href: "#",
   },
   {
-    title: "Платформа логистики",
-    description: "B2B-платформа для управления логистическими операциями",
-    stack: ["Angular", "TypeScript", "NodeJS"],
-    href: "#",
+    title: "Мобильное приложение водителя",
+    description: "PWA и Android-приложение для организации перевозки грузов",
+    stack: ["Angular", "TypeScript", "Capacitor"],
+    image: "/projects/dapp_1.png",
   },
   {
-    title: "Платформа логистики",
-    description: "B2B-платформа для управления логистическими операциями",
-    stack: ["Angular", "TypeScript", "NodeJS"],
-    href: "#",
+    title: "Онлайн-редактор документов",
+    description:
+      "Редактор документов с совместным доступом и функционалом согласующих",
+    stack: ["React", "TypeScript", "TipTap", "yJS", "NestJS"],
+    image: "/projects/word_1.png",
   },
   {
-    title: "Платформа логистики",
-    description: "B2B-платформа для управления логистическими операциями",
-    stack: ["Angular", "TypeScript", "NodeJS"],
-    href: "#",
+    title: "ИИ-генератор презентаций",
+    description: "Автоматический генератор и редактор презентаций на основе ИИ",
+    stack: ["React", "TypeScript", "NestJS", "Express", "NATS"],
+    image: "/projects/pai_1.png",
+  },
+  {
+    title: "Система распределения задач",
+    description:
+      "Автоматический таск-трекер с распределением задач по множеству критерий",
+    stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
+    image: "/projects/plan_1.jpg",
+  },
+  {
+    title: "ИИ-анализ инцидентов",
+    description: "Автоматический анализ инцидентов на видео в реальном времени",
+    stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
+    image: "/projects/incident_1.png",
+  },
+  {
+    title: "Календарь мероприятий",
+    description:
+      "Календарь мероприятий МинСпорта с автоматическим парсингом официального PDF-расписания",
+    stack: ["React", "SCSS", "TypeScript", "NestJS"],
+    image: "/projects/calendar_1.png",
   },
 ];
 

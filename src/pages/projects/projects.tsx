@@ -12,13 +12,19 @@ export default function ProjectsPage() {
       <div className={styles.feed}>
         {projects.map((project, index) => (
           <article className={styles.project} key={`${project.title}-${index}`}>
-            <a
-              className={styles.preview}
-              href={project.href}
-              aria-label={project.title}
-            >
-              {project.image && <img src={project.image} alt="" />}
-            </a>
+            {project.href ? (
+              <a
+                className={styles.preview}
+                href={project.href}
+                aria-label={project.title}
+              >
+                {project.image && <img src={project.image} alt="" />}
+              </a>
+            ) : (
+              <div className={styles.preview}>
+                {project.image && <img src={project.image} alt="" />}
+              </div>
+            )}
             <div className={styles.content}>
               <div className={styles.info}>
                 <h2>{project.title}</h2>
@@ -31,10 +37,12 @@ export default function ProjectsPage() {
                   </Chip>
                 ))}
               </div>
-              <a className={styles.link} href={project.href}>
-                Перейти к проекту
-                <HiArrowUpRight aria-hidden="true" />
-              </a>
+              {project.href && (
+                <a className={styles.link} href={project.href}>
+                  Перейти к проекту
+                  <HiArrowUpRight aria-hidden="true" />
+                </a>
+              )}
             </div>
           </article>
         ))}
