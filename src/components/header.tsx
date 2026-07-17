@@ -5,28 +5,30 @@ import hashNavigation from "../pages/index/hash-navigation";
 import styles from "./header.module.scss";
 
 export default function Header() {
+  const pageUrl = (hash: string) => `${import.meta.env.BASE_URL}#${hash}`;
+
   return (
     <header className={styles.header}>
       <main>
         <nav>
           <ul>
             <li>
-              <a href={`/#${hashNavigation["general"]}`}>Главная</a>
+              <a href={pageUrl(hashNavigation["general"])}>Главная</a>
             </li>
             <li>
-              <a href={`/#${hashNavigation["about"]}`}>Обо мне</a>
+              <a href={pageUrl(hashNavigation["about"])}>Обо мне</a>
             </li>
             <li>
-              <a href={`/#${hashNavigation["experience"]}`}>Опыт работы</a>
+              <a href={pageUrl(hashNavigation["experience"])}>Опыт работы</a>
             </li>
             <li>
-              <a href={`/#${hashNavigation["projects"]}`}>Проекты</a>
+              <a href={pageUrl(hashNavigation["projects"])}>Проекты</a>
             </li>
             <li>
-              <a href={`/#${hashNavigation["technologies"]}`}>Технологии</a>
+              <a href={pageUrl(hashNavigation["technologies"])}>Технологии</a>
             </li>
             <li>
-              <a href={`/#${hashNavigation["contacts"]}`}>Контакты</a>
+              <a href={pageUrl(hashNavigation["contacts"])}>Контакты</a>
             </li>
           </ul>
         </nav>
