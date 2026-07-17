@@ -12,8 +12,8 @@
 }
 
 .modal {
-  width: min(100%, 800px);
-  max-height: calc(100vh - pad(8));
+  width: min(100%, 1200px);
+  max-height: calc(100vh - pad(4));
   overflow: auto;
   border-radius: variables.$radius-medium;
   background: variables.$bg-white;

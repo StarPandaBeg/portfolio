@@ -20,6 +20,8 @@ body {
 
   background: variables.$bg-primary;
   color: variables.$text-base;
+  font-size: variables.$text-md;
+  line-height: 1.4;
 
   #root {
     min-height: 100vh;
@@ -38,12 +40,13 @@ h1 {
 h2 {
   font-size: variables.$heading-md;
   font-weight: 600;
-  color: variables.$text-secondary;
+  color: variables.$text-accent;
+  line-height: 1.15;
 }
 
 h3 {
   font-size: variables.$text-lg;
-  font-weight: 500;
-  color: variables.$text-secondary;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: variables.$text-accent;
+  line-height: 1.25;
 }

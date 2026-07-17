@@ -29,10 +29,12 @@
 
   & > h4 {
     color: variables.$text-accent;
+    font-size: variables.$text-lg;
     font-weight: 600;
   }
 
   ul {
+    font-size: variables.$text-md;
     list-style-position: inside;
     line-height: 1.6;
   }
