@@ -1,0 +1,19 @@
+@use "@/assets/scss/variables";
+
+.experience {
+  & > main {
+    display: flex;
+    flex-direction: column;
+    gap: pad(6);
+  }
+}
+
+.experience_achievements {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pad(4);
+
+  @include breakpoint-up("lg") {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

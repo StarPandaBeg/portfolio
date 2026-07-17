@@ -1,8 +1,9 @@
 import placeholderImg from "@/assets/images/placeholder.jpg";
-import InfoIntroduction from "./components/info-introduction";
+import InfoIntroduction from "./components/info-introduction/info-introduction";
 
 import styles from "./app.module.scss";
-import InfoAbout from "./components/info-about";
+import Experience from "./components/experience/experience";
+import InfoAbout from "./components/info-about/info-about";
 import hashNavigation from "./hash-navigation";
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
       />
       <img src={placeholderImg} className={styles.info_picture} />
       <InfoAbout className={styles.about} id={hashNavigation["about"]} />
+      <Experience
+        className={styles.experience}
+        id={hashNavigation["experience"]}
+      />
     </>
   );
 }

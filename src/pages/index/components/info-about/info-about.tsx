@@ -29,6 +29,7 @@ export default function InfoAbout({ className, ...props }: InfoAboutProps) {
               icon={HiMiniBuildingOffice2}
               header="1.5+ года"
               content="коммерческого опыта"
+              slim
             />
           </li>
           <li>
@@ -36,6 +37,7 @@ export default function InfoAbout({ className, ...props }: InfoAboutProps) {
               icon={HiRectangleStack}
               header="5+ проектов"
               content="в портфолио"
+              slim
             />
           </li>
           <li>
@@ -43,6 +45,7 @@ export default function InfoAbout({ className, ...props }: InfoAboutProps) {
               icon={HiTrophy}
               header="10+ призовых мест"
               content="в хакатонах и соревнованиях"
+              slim
             />
           </li>
           {/* <li>

@@ -23,3 +23,7 @@
 .about {
   @include grid-col(12);
 }
+
+.experience {
+  @include grid-col(12);
+}

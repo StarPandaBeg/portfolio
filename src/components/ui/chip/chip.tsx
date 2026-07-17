@@ -2,8 +2,28 @@ import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
 import styles from "./chip.module.scss";
 
-export type ChipProps = HTMLAttributes<HTMLSpanElement>;
+export type ChipVariant = "success" | "primary" | "secondary";
 
-export default function Chip({ className, ...props }: ChipProps) {
-  return <span className={cn(styles.chip, className)} {...props} />;
+export type ChipProps = HTMLAttributes<HTMLSpanElement> & {
+  dot?: boolean;
+  variant?: ChipVariant;
+};
+
+export default function Chip({
+  dot = false,
+  variant = "primary",
+  className,
+  ...props
+}: ChipProps) {
+  return (
+    <span
+      className={cn(
+        styles.chip,
+        styles[variant],
+        dot && styles.withDot,
+        className,
+      )}
+      {...props}
+    />
+  );
 }

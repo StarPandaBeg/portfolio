@@ -1,0 +1,63 @@
+@use "@/assets/scss/variables";
+
+.backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  padding: pad(4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 55%);
+}
+
+.modal {
+  width: min(100%, 800px);
+  max-height: calc(100vh - pad(8));
+  overflow: auto;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-white;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 25%);
+}
+
+.modal_header {
+  padding: pad(5) pad(6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: pad(4);
+  border-bottom: 1px solid variables.$border-accent;
+
+  h2 {
+    font-size: variables.$heading-md;
+  }
+}
+
+.modal_close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: variables.$bg-accent;
+  color: variables.$text-accent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 28px;
+  line-height: 1;
+
+  &:hover {
+    background: variables.$border-accent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.modal_content {
+  padding: pad(6);
+  color: variables.$text-secondary;
+  line-height: 1.5;
+}

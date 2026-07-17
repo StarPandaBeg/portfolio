@@ -1,0 +1,48 @@
+@use "@/assets/scss/variables";
+
+.job_row {
+  @include grid-container;
+  padding: pad(6) 0;
+}
+
+.job_row_iconcard {
+  @include grid-col(12);
+  @include grid-col(4, $breakpoint: "md");
+}
+
+.job_row_content {
+  @include grid-col(12);
+  @include grid-col(8, $breakpoint: "md");
+
+  border-top: 1px solid variables.$text-base;
+  padding: pad(6) 0;
+  color: variables.$text-secondary;
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  @include breakpoint-up("md") {
+    border-top: none;
+    border-left: 1px solid variables.$text-base;
+    padding: 0 pad(6);
+  }
+
+  & > h4 {
+    color: variables.$text-accent;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style-position: inside;
+    line-height: 1.6;
+  }
+}
+
+.job_row_stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: pad(2);
+  & > li {
+    list-style: none;
+  }
+}

@@ -32,6 +32,21 @@ $text-success: #15d20b;
 
 $border-accent: #b8c5dc;
 
+$chip-variants: (
+  "success": (
+    "background": $bg-success,
+    "color": $text-success,
+  ),
+  "primary": (
+    "background": $bg-accent,
+    "color": $text-primary,
+  ),
+  "secondary": (
+    "background": $bg-accent,
+    "color": $text-secondary,
+  ),
+) !default;
+
 $button-variants: (
   "primary": (
     "background": $color-primary,

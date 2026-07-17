@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: pad(3);
+  gap: pad(6);
 
   &_icon {
     padding: pad(4);
@@ -23,12 +23,28 @@
   }
 
   &_content {
+    display: flex;
+    flex-direction: column;
+    gap: pad(2);
+
     & > h3 {
       color: variables.$text-accent;
+    }
+    & > h4 {
+      font-size: variables.$text-md;
+      font-weight: 400;
+      color: variables.$text-primary;
     }
     & > p {
       font-size: variables.$text-md;
       color: variables.$text-muted;
     }
+  }
+}
+
+.icon_card_slim {
+  gap: pad(3);
+  .icon_card_content {
+    gap: 0;
   }
 }
