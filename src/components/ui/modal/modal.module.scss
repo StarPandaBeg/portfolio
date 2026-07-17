@@ -14,6 +14,7 @@
 .modal {
   width: min(100%, 1200px);
   max-height: calc(100vh - pad(4));
+  min-width: 0;
   overflow: auto;
   border-radius: variables.$radius-medium;
   background: variables.$bg-white;
@@ -23,13 +24,15 @@
 .modal_header {
   padding: pad(5) pad(6);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: pad(4);
   border-bottom: 1px solid variables.$border-accent;
 
   h2 {
-    font-size: variables.$heading-md;
+    min-width: 0;
+    font-size: clamp(1.35rem, 7vw, variables.$heading-md);
+    overflow-wrap: anywhere;
   }
 }
 
@@ -58,6 +61,23 @@
 
 .modal_content {
   padding: pad(6);
+  min-width: 0;
   color: variables.$text-secondary;
   line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .backdrop {
+    padding: pad(2);
+    align-items: flex-start;
+  }
+
+  .modal {
+    max-height: calc(100vh - pad(4));
+  }
+
+  .modal_header,
+  .modal_content {
+    padding: pad(4);
+  }
 }

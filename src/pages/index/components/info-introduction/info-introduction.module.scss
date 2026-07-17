@@ -35,6 +35,8 @@
 
   h1 {
     color: variables.$text-primary;
+    font-size: clamp(2rem, 11vw, variables.$heading-lg);
+    overflow-wrap: anywhere;
   }
 
   h2 {

@@ -71,6 +71,7 @@
 .achievement_list {
   max-height: min(420px, 50vh);
   padding-right: pad(2);
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: pad(3);
@@ -138,6 +139,12 @@
   gap: pad(4);
   width: calc(100% - pad(6));
 
+  strong,
+  a {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
   > span {
     flex: 0 0 auto;
     padding: pad(1) pad(3);
@@ -193,5 +200,10 @@
     flex-direction: column;
     width: 100%;
     gap: pad(1);
+  }
+
+  .achievement_list {
+    padding-right: 0;
+    scrollbar-gutter: auto;
   }
 }
