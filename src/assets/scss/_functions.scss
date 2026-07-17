@@ -46,7 +46,7 @@
   }
 }
 
-@mixin app-button($variant: "primary", $size: "md") {
+@mixin app-button-size($size: "md") {
   $sizes: (
     "sm": (
       "padding": pad(2) pad(3),
@@ -66,23 +66,36 @@
     @error "Unknown button size `#{$size}`. Available: #{map.keys($sizes)}.";
   }
 
+  padding: map.get($sizes, $size, "padding");
+  font-size: map.get($sizes, $size, "font-size");
+}
+
+@mixin app-button-variant($variant: "primary") {
   @if not map.has-key(variables.$button-variants, $variant) {
     @error "Unknown button variant `#{$variant}`. Available: #{map.keys(variables.$button-variants)}.";
   }
 
   $theme: map.get(variables.$button-variants, $variant);
 
-  padding: map.get($sizes, $size, "padding");
-  outline: none;
-  border: 1px solid map.get($theme, "border");
-  border-radius: variables.$radius-medium;
-  text-decoration: none;
-
+  border-color: map.get($theme, "border");
   background-color: map.get($theme, "background");
   color: map.get($theme, "color");
 
+  &:hover:not(:disabled) {
+    border-color: map.get($theme, "hover-border");
+    background-color: map.get($theme, "hover-background");
+    color: map.get($theme, "hover-color");
+    opacity: map.get($theme, "hover-opacity");
+  }
+}
+
+@mixin app-button-base {
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: variables.$radius-medium;
+  text-decoration: none;
+
   font: inherit;
-  font-size: map.get($sizes, $size, "font-size");
   font-weight: 500;
   line-height: 1.25;
   cursor: pointer;
@@ -91,13 +104,6 @@
     border-color variables.$transition,
     color variables.$transition,
     opacity variables.$transition;
-
-  &:hover:not(:disabled) {
-    border-color: map.get($theme, "hover-border");
-    background-color: map.get($theme, "hover-background");
-    color: map.get($theme, "hover-color");
-    opacity: map.get($theme, "hover-opacity");
-  }
 
   &:focus-visible {
     outline: 2px solid variables.$color-primary;
@@ -108,4 +114,10 @@
     cursor: not-allowed;
     opacity: 0.5;
   }
+}
+
+@mixin app-button($variant: "primary", $size: "md") {
+  @include app-button-base;
+  @include app-button-variant($variant);
+  @include app-button-size($size);
 }

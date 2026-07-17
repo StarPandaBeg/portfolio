@@ -16,16 +16,6 @@
   align-items: end;
 }
 
-.info_chip {
-  padding: pad(2) pad(4);
-  background: variables.$bg-success;
-  border-radius: variables.$radius-medium;
-  color: variables.$text-success;
-
-  font-weight: 600;
-  font-size: variables.$text-md;
-}
-
 .info_main {
   padding: pad(12) pad(8);
   flex: 1;
@@ -53,14 +43,6 @@
   width: 100%;
   display: flex;
   gap: pad(6);
-}
-
-.info_btn_projects {
-  @include app-button($size: "lg");
-}
-
-.info_btn_github {
-  @include app-button("secondary", "lg");
 }
 
 .info_avatar {
