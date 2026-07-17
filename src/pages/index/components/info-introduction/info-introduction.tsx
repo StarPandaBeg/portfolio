@@ -2,6 +2,7 @@ import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
 
 import githubIcon from "@/assets/images/github_inverted.svg";
+import meImg from "@/assets/images/me.jpg";
 import placeholderImg from "@/assets/images/placeholder.jpg";
 import Button from "@/components/ui/button/button";
 import Chip from "@/components/ui/chip/chip";
@@ -42,7 +43,10 @@ export default function InfoIntroduction({
         </div>
       </main>
 
-      <img src={placeholderImg} className={styles.info_avatar} />
+      <picture className={styles.info_avatar}>
+        <source media="(min-width: 1300px)" srcSet={placeholderImg} />
+        <img src={meImg} alt="" />
+      </picture>
     </section>
   );
 }
