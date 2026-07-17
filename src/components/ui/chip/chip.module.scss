@@ -1,0 +1,24 @@
+@use "@/assets/scss/variables";
+
+.chip {
+  width: max-content;
+  padding: pad(2) pad(4);
+  display: inline-flex;
+  align-items: center;
+  gap: pad(2);
+
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-success;
+  color: variables.$text-success;
+
+  font-size: variables.$text-md;
+  font-weight: 600;
+
+  &::before {
+    content: "";
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}

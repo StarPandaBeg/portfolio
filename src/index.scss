@@ -11,6 +11,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100%;
 
@@ -35,4 +39,11 @@ h2 {
   font-size: variables.$heading-md;
   font-weight: 600;
   color: variables.$text-secondary;
+}
+
+h3 {
+  font-size: variables.$text-lg;
+  font-weight: 500;
+  color: variables.$text-secondary;
+  letter-spacing: 0.5px;
 }

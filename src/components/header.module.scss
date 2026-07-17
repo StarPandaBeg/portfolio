@@ -44,10 +44,6 @@
         }
       }
     }
-
-    button {
-      @include app-button("muted", "sm");
-    }
   }
 }
 

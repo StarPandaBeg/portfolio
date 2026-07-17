@@ -90,6 +90,7 @@
 }
 
 @mixin app-button-base {
+  display: block;
   outline: none;
   border: 1px solid transparent;
   border-radius: variables.$radius-medium;

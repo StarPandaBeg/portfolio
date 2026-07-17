@@ -1,5 +1,6 @@
 import githubIcon from "@/assets/images/github.svg";
 import hhIcon from "@/assets/images/hh.svg";
+import Button from "@/components/ui/button/button";
 import hashNavigation from "../pages/index/hash-navigation";
 import styles from "./header.module.scss";
 
@@ -50,7 +51,9 @@ export default function Header() {
               </a>
             </li>
           </ul>
-          <button>Связаться со мной</button>
+          <Button variant="muted" size="sm">
+            Связаться со мной
+          </Button>
         </div>
       </main>
     </header>

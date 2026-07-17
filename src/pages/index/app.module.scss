@@ -9,10 +9,17 @@
   @include grid-col(12);
   @include grid-col(4, $breakpoint: "xl");
 
-  display: block;
+  display: none;
+  @include breakpoint-up("xl") {
+    display: block;
+  }
 
   aspect-ratio: 1;
   width: 100%;
   align-self: flex-end;
   border-radius: variables.$radius-medium;
+}
+
+.about {
+  @include grid-col(12);
 }

@@ -1,0 +1,34 @@
+@use "@/assets/scss/variables";
+
+.icon_card {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: pad(3);
+
+  &_icon {
+    padding: pad(4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    background: variables.$bg-accent;
+    color: variables.$color-primary;
+    font-size: variables.$heading-md;
+    border-radius: variables.$radius-medium;
+  }
+
+  &_content {
+    & > h3 {
+      color: variables.$text-accent;
+    }
+    & > p {
+      font-size: variables.$text-md;
+      color: variables.$text-muted;
+    }
+  }
+}

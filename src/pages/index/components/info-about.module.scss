@@ -1,0 +1,54 @@
+@use "@/assets/scss/variables";
+
+.about {
+  @include grid-container();
+
+  position: relative;
+  padding: pad(8);
+
+  border: 1px solid variables.$border-accent;
+  border-radius: variables.$radius-medium;
+}
+
+.about_img {
+  @include grid-col(12);
+  @include grid-col(2, $breakpoint: "md");
+
+  max-width: 128px;
+  @include breakpoint-up("md") {
+    max-width: none;
+  }
+
+  width: 100%;
+  align-self: center;
+}
+
+.about_main {
+  @include grid-col(10);
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: pad(6);
+
+  & > p {
+    @include breakpoint-up("md") {
+      max-width: 80%;
+    }
+
+    font-size: variables.$text-lg;
+    color: variables.$text-secondary;
+  }
+
+  & > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: pad(4);
+
+    li {
+      list-style: none;
+    }
+  }
+}

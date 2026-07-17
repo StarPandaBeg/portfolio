@@ -16,7 +16,7 @@ export default function InfoIntroduction({
   return (
     <section className={cn(styles.info, className)} {...props}>
       <div className={styles.info_filler}>
-        <Chip>Ищу работу</Chip>
+        <Chip className={styles.info_filler_chip}>Ищу работу</Chip>
       </div>
       <main className={styles.info_main}>
         <div>
