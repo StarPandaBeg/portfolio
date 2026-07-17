@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <main>
-        <nav>
+        <nav aria-label="Основная навигация">
           <ul>
             <li>
               <Link to={"/"}>Главная</Link>

@@ -17,30 +17,49 @@
       @include grid-col(12);
       @include grid-col(8, $breakpoint: "lg");
 
+      min-width: 0;
       display: flex;
       align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       ul {
-        width: 100%;
+        width: max-content;
         list-style: none;
 
         display: flex;
         align-items: center;
-        gap: pad(8);
+        gap: pad(5);
 
         li {
+          flex: 0 0 auto;
+
           a {
             transition: variables.$transition;
             color: variables.$text-base;
             font-size: variables.$text-md;
 
             font-weight: 400;
+            white-space: nowrap;
             text-decoration: none;
 
             &:hover {
               color: variables.$text-accent-inverted;
             }
           }
+        }
+      }
+
+      @include breakpoint-up("lg") {
+        overflow: visible;
+
+        ul {
+          width: 100%;
+          gap: pad(8);
         }
       }
     }
@@ -52,9 +71,9 @@
   @include grid-col(4, $breakpoint: "lg");
 
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  gap: pad(8);
+  gap: pad(4);
 
   ul {
     height: 100%;
@@ -77,5 +96,10 @@
         }
       }
     }
+  }
+
+  @include breakpoint-up("lg") {
+    justify-content: end;
+    gap: pad(8);
   }
 }
