@@ -22,6 +22,7 @@ export interface AchievementEntry {
       name: string;
       result?: string;
       resultColor?: AchievementResultColor;
+      case?: string;
       href?: string;
     }[];
   };
@@ -37,6 +38,28 @@ export default function AchievementCard({
 }: AchievementCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
+  const renderAchievementSummary = (
+    item: NonNullable<AchievementEntry["modal"]>["items"][number],
+  ) => (
+    <span className={styles.achievement_summary}>
+      {item.href ? (
+        <a href={item.href} target="_blank" rel="noreferrer">
+          {item.name} ↗
+        </a>
+      ) : (
+        <strong>{item.name}</strong>
+      )}
+      {item.result && (
+        <span
+          className={
+            item.resultColor ? styles[`result_${item.resultColor}`] : undefined
+          }
+        >
+          {item.result}
+        </span>
+      )}
+    </span>
+  );
 
   return (
     <>
@@ -81,26 +104,14 @@ export default function AchievementCard({
             {achievement.modal.items.map((item, index) => (
               <li key={`${item.name}-${index}`}>
                 <span className={styles.achievement_marker} aria-hidden="true" />
-                <div>
-                  {item.href ? (
-                    <a href={item.href} target="_blank" rel="noreferrer">
-                      {item.name} ↗
-                    </a>
-                  ) : (
-                    <strong>{item.name}</strong>
-                  )}
-                  {item.result && (
-                    <span
-                      className={
-                        item.resultColor
-                          ? styles[`result_${item.resultColor}`]
-                          : undefined
-                      }
-                    >
-                      {item.result}
-                    </span>
-                  )}
-                </div>
+                {item.case ? (
+                  <details className={styles.achievement_details}>
+                    <summary>{renderAchievementSummary(item)}</summary>
+                    <p className={styles.achievement_case}>{item.case}</p>
+                  </details>
+                ) : (
+                  renderAchievementSummary(item)
+                )}
               </li>
             ))}
           </ul>

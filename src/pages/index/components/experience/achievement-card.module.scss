@@ -84,20 +84,12 @@
     padding: pad(4);
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
+    align-items: start;
     gap: pad(4);
 
     border: 1px solid variables.$border-accent;
     border-radius: variables.$radius-medium;
     background: variables.$bg-accent;
-
-    div {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: pad(4);
-    }
 
     strong,
     a {
@@ -112,28 +104,69 @@
         color: variables.$text-primary;
       }
     }
+  }
+}
 
-    div > span {
-      flex: 0 0 auto;
-      padding: pad(1) pad(3);
-      border-radius: 999px;
+.achievement_details {
+  min-width: 0;
+
+  summary {
+    display: block;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "↓";
+      margin-left: pad(3);
       color: variables.$text-primary;
       font-weight: 600;
     }
   }
+
+  &[open] summary::after {
+    content: "↑";
+  }
 }
 
-.achievement_list li div > .result_bronze {
+.achievement_summary {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: pad(4);
+  width: calc(100% - pad(6));
+
+  > span {
+    flex: 0 0 auto;
+    padding: pad(1) pad(3);
+    border-radius: 999px;
+    color: variables.$text-primary;
+    font-weight: 600;
+  }
+}
+
+.achievement_case {
+  margin-top: pad(3);
+  padding-top: pad(3);
+  border-top: 1px solid variables.$border-accent;
+  color: variables.$text-secondary;
+}
+
+.achievement_summary > .result_bronze {
   background: #f2dfd2;
   color: #9a4f1c;
 }
 
-.achievement_list li div > .result_silver {
+.achievement_summary > .result_silver {
   background: #e8ebef;
   color: #59636e;
 }
 
-.achievement_list li div > .result_gold {
+.achievement_summary > .result_gold {
   background: #fff1bd;
   color: #9a6a00;
 }
@@ -141,6 +174,7 @@
 .achievement_marker {
   width: 10px;
   height: 10px;
+  margin-top: 0.55em;
   border-radius: 50%;
   background: variables.$color-primary;
   box-shadow: 0 0 0 5px rgb(0 138 255 / 12%);
@@ -156,9 +190,10 @@
     justify-content: flex-start;
   }
 
-  .achievement_list li div {
+  .achievement_summary {
     align-items: flex-start;
     flex-direction: column;
+    width: 100%;
     gap: pad(1);
   }
 }
