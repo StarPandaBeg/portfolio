@@ -17,6 +17,8 @@ jobs:
     name: Lint and build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment:
+      name: github-pages
 
     env:
       VITE_URL_GITHUB: ${{ vars.VITE_URL_GITHUB }}
@@ -37,6 +39,11 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Check build environment
+        run: |
+          test -n "$VITE_URL_GITHUB"
+          test -n "$VITE_URL_HH"
 
       - name: Build
         run: npm run build -- --base /portfolio/
