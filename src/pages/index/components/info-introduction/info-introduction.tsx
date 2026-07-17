@@ -6,6 +6,8 @@ import meImg from "@/assets/images/me.jpg";
 import placeholderImg from "@/assets/images/placeholder.jpg";
 import Button from "@/components/ui/button/button";
 import Chip from "@/components/ui/chip/chip";
+import { useLocation } from "react-router";
+import hashNavigation from "../../hash-navigation";
 import styles from "./info-introduction.module.scss";
 
 export type InfoIntroductionProps = HTMLAttributes<HTMLDivElement>;
@@ -14,6 +16,13 @@ export default function InfoIntroduction({
   className,
   ...props
 }: InfoIntroductionProps) {
+  const { hash, pathname } = useLocation();
+  const scrollToProjects = () => {
+    if (pathname !== "/" || hash !== `#${hashNavigation["projects"]}`) return;
+
+    document.getElementById(hashNavigation["projects"])?.scrollIntoView();
+  };
+
   return (
     <section className={cn(styles.info, className)} {...props}>
       <div className={styles.info_filler}>
@@ -28,7 +37,14 @@ export default function InfoIntroduction({
         </div>
         <p>Создаю веб-приложения, которые решают реальные задачи</p>
         <div className={styles.info_btn_container}>
-          <Button size="lg">Смотреть проекты →</Button>
+          <Button
+            as="a"
+            href={`${import.meta.env.BASE_URL}#${hashNavigation["projects"]}`}
+            onClick={scrollToProjects}
+            size="lg"
+          >
+            Смотреть проекты →
+          </Button>
           <Button
             as="a"
             href={import.meta.env.VITE_URL_GITHUB}
