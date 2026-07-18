@@ -3,6 +3,7 @@ import Button from "@/components/ui/button/button";
 import { contacts } from "@/config";
 import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
+import { HiMiniArrowUpRight } from "react-icons/hi2";
 import styles from "./contacts.module.scss";
 
 export interface ContactEntry {
@@ -28,7 +29,10 @@ export default function Contacts({ className, ...props }: ContactsProps) {
           <li key={`${contact.label}-${contact.value}`}>
             <a href={contact.href} target="_blank" rel="noreferrer">
               <strong>{contact.label}</strong>
-              <span>{contact.value}</span>
+              <span>
+                {contact.value}
+                <HiMiniArrowUpRight />
+              </span>
             </a>
           </li>
         ))}

@@ -35,7 +35,7 @@ export default function InfoAbout({ className, ...props }: InfoAboutProps) {
           <li>
             <IconCard
               icon={HiRectangleStack}
-              header="5+ проектов"
+              header="8+ проектов"
               content="в портфолио"
               slim
             />

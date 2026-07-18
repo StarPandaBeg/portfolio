@@ -92,18 +92,6 @@ export const achievements: AchievementEntry[] = [
           case: "Кейс: Электронное табло очереди для нужд Почты Донбасса",
         },
         {
-          name: "Продуктовое программирование - 2024",
-          result: "3 место",
-          resultColor: "bronze",
-          case: "Кейс: Календарь спортивных мероприятий МинСпорта РФ",
-        },
-        {
-          name: "Код мира - 2024",
-          result: "3 место",
-          resultColor: "bronze",
-          case: "Кейс: Автоматическая система ранжирования кандидатов на вакансии",
-        },
-        {
           name: "Кубок Новых Регионов - 2024",
           result: "1 место",
           resultColor: "gold",
@@ -114,6 +102,18 @@ export const achievements: AchievementEntry[] = [
           result: "2 место",
           resultColor: "silver",
           case: "Кейс: Интеллектуальный помощник техподдержки Rutube",
+        },
+        {
+          name: "Продуктовое программирование - 2024",
+          result: "3 место",
+          resultColor: "bronze",
+          case: "Кейс: Календарь спортивных мероприятий МинСпорта РФ",
+        },
+        {
+          name: "Код мира - 2024",
+          result: "3 место",
+          resultColor: "bronze",
+          case: "Кейс: Автоматическая система ранжирования кандидатов на вакансии",
         },
       ],
     },
@@ -172,6 +172,13 @@ export const projects: ProjectEntry[] = [
     stack: ["React", "React Query", "Tailwind", "MotionJS"],
     image: "/projects/generator_1.jpg",
   },
+  {
+    title: "Генератор лотерейных механик",
+    description:
+      "Умная симуляция лотерейных билетов с возможностью тестирования тиражей и аналитики",
+    stack: ["React", "React Query", "Tailwind", "MotionJS"],
+    image: "/projects/lottery_1.png",
+  },
 ];
 
 export const technologies: TechnologyGroup[] = [
@@ -213,5 +220,10 @@ export const contacts: ContactEntry[] = [
     label: "Telegram",
     value: "@k_shmurakov",
     href: "https://t.me/k_shmurakov",
+  },
+  {
+    label: "hh.ru",
+    value: "Резюме",
+    href: import.meta.env.VITE_URL_HH,
   },
 ];
