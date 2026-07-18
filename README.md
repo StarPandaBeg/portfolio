@@ -1,75 +1,94 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Личный сайт-портфолио fullstack-разработчика: опыт работы, достижения, проекты, технологии и контакты.
 
-Currently, two official plugins are available:
+Проект собран как полностью клиентское приложение. После сборки результат лежит в `dist/` и может раздаваться как статические `html/css/js` файлы.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Стек
 
-## React Compiler
+- React
+- TypeScript
+- Vite
+- React Router
+- SCSS Modules
+- GitHub Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Запуск локально
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+По умолчанию Vite поднимет dev-сервер и покажет локальный URL в терминале.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Переменные окружения
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Для клиентской сборки Vite читает только переменные с префиксом `VITE_`.
 
+Создай `.env` по примеру `.env.example`:
+
+```env
+VITE_URL_GITHUB=https://github.com/username
+VITE_URL_HH=https://hh.ru/resume/...
 ```
+
+Эти значения подставляются во время `npm run build`, поэтому для GitHub Pages они должны быть заданы в GitHub Actions variables.
+
+## Команды
+
+```bash
+npm run dev
+```
+
+Запуск проекта в режиме разработки.
+
+```bash
+npm run lint
+```
+
+Проверка ESLint.
+
+```bash
+npm run build
+```
+
+TypeScript-проверка и production-сборка в `dist/`.
+
+```bash
+npm run preview
+```
+
+Локальный просмотр production-сборки.
+
+## Структура
+
+```text
+src/
+  assets/
+    images/
+    scss/
+  components/
+    ui/
+  pages/
+    index/
+    projects/
+  config.tsx
+```
+
+Основной контент сайта редактируется в `src/config.tsx`: опыт, достижения, проекты, технологии и контакты.
+
+## Деплой
+
+Деплой настроен через GitHub Actions в `.github/workflows/build.yml`.
+
+Workflow:
+
+- устанавливает зависимости;
+- запускает lint;
+- проверяет обязательные env-переменные;
+- собирает проект;
+- добавляет `404.html` для SPA fallback;
+- публикует `dist/` на GitHub Pages.
+
+Сайт рассчитан на кастомный домен и собирается с `base: "/"`.
