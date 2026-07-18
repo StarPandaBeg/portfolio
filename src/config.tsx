@@ -125,6 +125,7 @@ export const projects: ProjectEntry[] = [
     title: "Платформа логистики",
     description: "B2B-платформа для управления логистическими операциями",
     stack: ["Angular", "TypeScript", "NodeJS"],
+    image: "/projects/web_1.png",
   },
   {
     title: "Мобильное приложение водителя",
