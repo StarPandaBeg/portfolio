@@ -1,5 +1,5 @@
 import { HiTruck } from "react-icons/hi2";
-import type { ContactEntry } from "./pages/index/components/contacts/contacts";
+import type { ContactEntry } from "./components/contacts/contacts";
 import type { AchievementEntry } from "./pages/index/components/experience/achievement-card";
 import type { JobEntry } from "./pages/index/components/experience/job-row";
 import type { ProjectEntry } from "./pages/index/components/projects/project-card";

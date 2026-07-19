@@ -14,3 +14,7 @@
     padding: var(--page-padding-vertical) var(--page-padding-horizontal);
   }
 }
+
+.contacts {
+  @include functions.grid-col(12);
+}

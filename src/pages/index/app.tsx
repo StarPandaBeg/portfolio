@@ -3,7 +3,6 @@ import meImg from "@/assets/images/me.jpg";
 import InfoIntroduction from "./components/info-introduction/info-introduction";
 
 import styles from "./app.module.scss";
-import Contacts from "./components/contacts/contacts";
 import Experience from "./components/experience/experience";
 import InfoAbout from "./components/info-about/info-about";
 import Projects from "./components/projects/projects";
@@ -28,7 +27,6 @@ function App() {
         className={styles.technologies}
         id={hashNavigation["technologies"]}
       />
-      <Contacts className={styles.contacts} id={hashNavigation["contacts"]} />
     </>
   );
 }
