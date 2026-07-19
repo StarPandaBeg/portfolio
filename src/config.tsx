@@ -132,6 +132,7 @@ export const projects: ProjectEntry[] = [
     description: "PWA и Android-приложение для организации перевозки грузов",
     stack: ["Angular", "TypeScript", "Capacitor"],
     image: "/projects/dapp_1.png",
+    href: "/news/driver-app",
   },
   {
     title: "Онлайн-редактор документов",
