@@ -2,6 +2,7 @@ import Chip from "@/components/ui/chip/chip";
 import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
+import { Link } from "react-router";
 import styles from "./project-card.module.scss";
 
 export interface ProjectEntry {
@@ -35,13 +36,13 @@ export default function ProjectCard({
   return (
     <article className={cn(styles.card, className)} {...props}>
       {project.href ? (
-        <a
+        <Link
           className={styles.preview}
-          href={project.href}
+          to={project.href}
           aria-label={project.title}
         >
           {preview}
-        </a>
+        </Link>
       ) : (
         <div className={styles.preview}>{preview}</div>
       )}

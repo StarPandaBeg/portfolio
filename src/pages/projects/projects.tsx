@@ -1,6 +1,7 @@
 import Chip from "@/components/ui/chip/chip";
 import { projects } from "@/config";
 import { HiArrowUpRight } from "react-icons/hi2";
+import { Link } from "react-router";
 import styles from "./projects.module.scss";
 
 export default function ProjectsPage() {
@@ -13,13 +14,13 @@ export default function ProjectsPage() {
         {projects.map((project, index) => (
           <article className={styles.project} key={`${project.title}-${index}`}>
             {project.href ? (
-              <a
+              <Link
                 className={styles.preview}
-                href={project.href}
+                to={project.href}
                 aria-label={project.title}
               >
                 {project.image && <img src={project.image} alt="" />}
-              </a>
+              </Link>
             ) : (
               <div className={styles.preview}>
                 {project.image && <img src={project.image} alt="" />}
@@ -38,10 +39,10 @@ export default function ProjectsPage() {
                 ))}
               </div>
               {project.href && (
-                <a className={styles.link} href={project.href}>
+                <Link className={styles.link} to={project.href}>
                   Перейти к проекту
                   <HiArrowUpRight aria-hidden="true" />
-                </a>
+                </Link>
               )}
             </div>
           </article>
