@@ -141,7 +141,7 @@
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: pad(7);
+  gap: pad(4);
   color: variables.$text-secondary;
   font-size: variables.$text-md;
   line-height: 1.65;
@@ -154,6 +154,7 @@
 
   h2 {
     margin-top: pad(4);
+    margin-bottom: pad(2);
   }
 
   ul,

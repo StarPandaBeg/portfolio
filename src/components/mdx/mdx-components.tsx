@@ -30,6 +30,10 @@ export function TechStack({ items }: { items: string[] }) {
   );
 }
 
+export function NoWrap({ children }: { children: ReactNode }) {
+  return <span className={styles.nowrap}>{children}</span>;
+}
+
 export function MediaImage({
   src,
   alt,
@@ -172,6 +176,31 @@ export function MdxGrid({
     <div
       className={styles.grid}
       style={{ "--mdx-grid-columns": columns } as CSSProperties}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function MdxColumns({
+  ratio = "1:1",
+  align = "start",
+  children,
+}: {
+  ratio?: "1:1" | "1:2" | "2:1" | "1:1:1";
+  align?: "start" | "center" | "end" | "stretch";
+  children: ReactNode;
+}) {
+  const columnsRatio = ratio
+    .split(":")
+    .map((size) => `${size}fr`)
+    .join(" ");
+
+  return (
+    <div
+      className={styles.columns}
+      data-align={align}
+      style={{ "--mdx-columns-ratio": columnsRatio } as CSSProperties}
     >
       {children}
     </div>

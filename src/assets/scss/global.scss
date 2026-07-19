@@ -3,8 +3,8 @@
 
 :root {
   --page-max-width: #{variables.$page-max-width};
-  --page-padding-horizontal: #{functions.pad(8)};
-  --page-padding-vertical: #{functions.pad(12)};
+  --page-padding-horizontal: #{functions.pad(12)};
+  --page-padding-vertical: #{functions.pad(16)};
 
   --padding-step: #{variables.$padding-step};
 }

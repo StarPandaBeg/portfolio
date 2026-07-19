@@ -4,11 +4,17 @@
   padding: pad(5);
   display: flex;
   flex-direction: column;
-  gap: pad(3);
+  gap: pad(4);
 
   border: 1px solid variables.$border-accent;
   border-radius: variables.$radius-medium;
   background: variables.$bg-accent;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: pad(2);
+  }
 
   strong {
     color: variables.$text-accent;
@@ -18,12 +24,20 @@
   p {
     margin: 0;
   }
+
+  br {
+    line-height: 0;
+  }
 }
 
 .stack {
   display: flex;
   flex-wrap: wrap;
   gap: pad(2);
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .media,
@@ -37,6 +51,7 @@
     color: variables.$text-muted;
     font-size: variables.$text-sm;
     line-height: 1.4;
+    padding-bottom: pad(4);
   }
 }
 
@@ -171,6 +186,39 @@
   }
 }
 
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pad(6);
+
+  @include breakpoint-up("md") {
+    grid-template-columns: var(--mdx-columns-ratio);
+    align-items: start;
+  }
+
+  &[data-align="center"] {
+    align-items: center;
+  }
+
+  &[data-align="end"] {
+    align-items: end;
+  }
+
+  &[data-align="stretch"] {
+    align-items: stretch;
+  }
+
+  > * {
+    min-width: 0;
+  }
+
+  > :where(div, section, article, aside) {
+    display: flex;
+    flex-direction: column;
+    gap: pad(4);
+  }
+}
+
 .card {
   padding: pad(5);
   display: flex;
@@ -231,8 +279,7 @@
     color: variables.$text-accent;
     font-weight: 600;
     text-decoration: none;
-    transition:
-      color variables.$transition ease;
+    transition: color variables.$transition ease;
 
     &::before {
       content: counter(toc, decimal-leading-zero);
