@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import type { ComponentType } from "react";
 import { useEffect } from "react";
+import { HiArrowUp } from "react-icons/hi2";
 import styles from "./news.module.scss";
 
 type NewsModule = {
@@ -114,6 +115,14 @@ export default function NewsPage() {
           </figure>
         )}
       </header>
+      <button
+        className={styles.scroll_top}
+        type="button"
+        aria-label="Наверх"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <HiArrowUp aria-hidden="true" />
+      </button>
       <div className={styles.content}>
         <Article />
       </div>
