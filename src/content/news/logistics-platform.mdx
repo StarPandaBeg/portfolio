@@ -1,0 +1,178 @@
+import {
+  BeforeAfter,
+  ImageGallery,
+  MdxCard,
+  MdxGrid,
+  MediaImage,
+  ProjectNote,
+  TableOfContents,
+  TechStack,
+  VideoBlock,
+} from "@/components/mdx/mdx-components";
+import { HiArrowTopRightOnSquare, HiCheckCircle } from "react-icons/hi2";
+
+export const frontmatter = {
+  title: "Как я делал платформу логистики",
+  description:
+    "Черновик MDX-статьи о проекте: задача, роль, стек, интерфейсные решения и результат.",
+  date: "19.07.2026",
+  cover: {
+    src: "/projects/dapp_1.png",
+    alt: "Экран мобильного приложения водителя",
+    caption: "Обложка опциональная: можно убрать поле cover из frontmatter.",
+  },
+};
+
+<TableOfContents
+  items={[
+    { href: "#context", label: "Контекст" },
+    { href: "#stack", label: "Стек" },
+    { href: "#interface", label: "Интерфейс" },
+    { href: "#result", label: "Результат" },
+    { href: "#formatting", label: "Форматирование" },
+  ]}
+/>
+
+<ProjectNote title="Кейс">
+  Нужно было собрать B2B-платформу для управления договорами, заявками,
+  перевозками и маршрутами. В статье можно отдельно разобрать архитектуру,
+  сложные места и результат.
+</ProjectNote>
+
+<h2 id="context">Контекст</h2>
+
+Это тестовая MDX-страница. Здесь можно писать обычный Markdown и вставлять
+React-компоненты прямо в текст.
+
+<MdxGrid columns={2}>
+  <MdxCard title="Задача">
+    Сделать интерфейс, в котором операторы быстро находят заявки, проверяют
+    маршруты и видят актуальные статусы перевозок.
+  </MdxCard>
+  <MdxCard title="Моя роль">
+    Разработка UI, работа с бизнес-логикой, интеграция API и поддержка
+    нескольких пользовательских сценариев.
+  </MdxCard>
+</MdxGrid>
+
+<h2 id="stack">Стек</h2>
+
+<TechStack items={["Angular", "TypeScript", "NodeJS", "Express", "RxJS"]} />
+
+<h2 id="interface">Интерфейс</h2>
+
+<MediaImage
+  src="/projects/dapp_1.png"
+  alt="Экран мобильного приложения водителя"
+  caption="Одиночная картинка с подписью."
+/>
+
+<ImageGallery
+  images={[
+    {
+      src: "/projects/word_1.png",
+      alt: "Редактор документов",
+      caption: "Пример карточки галереи.",
+    },
+    {
+      src: "/projects/calendar_1.png",
+      alt: "Календарь мероприятий",
+      caption: "Галерея сама адаптируется по ширине.",
+    },
+  ]}
+/>
+
+<BeforeAfter
+  before="/projects/plan_1.jpg"
+  after="/projects/incident_1.png"
+  beforeAlt="Интерфейс до изменений"
+  afterAlt="Интерфейс после изменений"
+  caption="Компонент сравнения: ползунок можно двигать влево и вправо."
+/>
+
+<VideoBlock
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  title="Демо проекта"
+  caption="Видео можно вставлять через embed-ссылку."
+/>
+
+Локальное видео из `public/videos` вставляется так:
+
+```mdx
+<LocalVideo
+  src="/videos/project-demo.mp4"
+  poster="/projects/dapp_1.png"
+  caption="Видео из public/videos."
+/>
+```
+
+<h2 id="result">Результат</h2>
+
+<MdxGrid columns={3}>
+  <MdxCard title="Скорость">
+    Операторы быстрее проходят основные сценарии и меньше переключаются между
+    экранами.
+  </MdxCard>
+  <MdxCard title="Надежность">
+    Статусы и данные синхронизируются предсказуемо, а ошибки легче отлавливать.
+  </MdxCard>
+  <MdxCard title="Масштабирование">
+    Архитектура позволяет добавлять новые роли, статусы и интеграции.
+  </MdxCard>
+</MdxGrid>
+
+<h2 id="formatting">Форматирование</h2>
+
+Обычная ссылка в тексте выглядит так:
+[документация Vite](https://vite.dev/). Внешнюю ссылку можно оформить и как
+React/HTML:
+
+<a href="https://vite.dev/" target="_blank" rel="noreferrer">
+  Vite <HiArrowTopRightOnSquare aria-hidden="true" />
+</a>
+
+Inline-code тоже работает: `npm run build`, `src/config.tsx`, `VITE_URL_GITHUB`.
+
+### Маркированный список
+
+- описал задачу;
+- выделил свою роль;
+- показал интерфейсные решения;
+- добавил результат.
+
+### Нумерованный список
+
+1. Сначала описываю контекст.
+2. Потом показываю стек и архитектуру.
+3. После этого добавляю скриншоты, видео и выводы.
+
+### Таблица
+
+| Зона | Что описать | Пример |
+| --- | --- | --- |
+| Задача | Какую проблему решал проект | Долгая обработка заявок |
+| Роль | Что сделал лично я | UI, API-интеграция, состояния |
+| Результат | Что стало лучше | Быстрее сценарии операторов |
+
+### Цитата
+
+> Хороший кейс не просто показывает красивый экран, а объясняет, какую задачу
+> этот экран помог решить.
+
+### Иконки
+
+Можно импортировать иконки из `react-icons` и вставлять их прямо в текст или
+компоненты:
+
+<MdxGrid columns={3}>
+  <MdxCard title="Готово">
+    <HiCheckCircle aria-hidden="true" /> Компонент с иконкой внутри MDX.
+  </MdxCard>
+  <MdxCard title="Ссылка">
+    <HiArrowTopRightOnSquare aria-hidden="true" /> Можно подсветить переход во
+    внешний источник.
+  </MdxCard>
+  <MdxCard title="Markdown + React">
+    Обычный текст спокойно соседствует с JSX-компонентами.
+  </MdxCard>
+</MdxGrid>

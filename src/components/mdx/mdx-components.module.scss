@@ -1,0 +1,248 @@
+@use "@/assets/scss/variables";
+
+.note {
+  padding: pad(5);
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  border: 1px solid variables.$border-accent;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+
+  strong {
+    color: variables.$text-accent;
+    font-size: variables.$text-lg;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: pad(2);
+}
+
+.media,
+.video,
+.compare {
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  figcaption {
+    color: variables.$text-muted;
+    font-size: variables.$text-sm;
+    line-height: 1.4;
+  }
+}
+
+.media {
+  img {
+    width: 100%;
+    display: block;
+    border-radius: variables.$radius-medium;
+    object-fit: cover;
+  }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pad(4);
+
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.video {
+  iframe,
+  video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 0;
+    border-radius: variables.$radius-medium;
+    background: variables.$bg-muted;
+  }
+
+  video {
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.compare_frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  input {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    width: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+}
+
+.compare_after {
+  position: absolute;
+  inset: 0;
+}
+
+.compare_handle {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: variables.$bg-white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border: 2px solid variables.$bg-white;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 35%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  }
+
+  &::after {
+    content: "↔";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: variables.$bg-white;
+    font-weight: 600;
+  }
+}
+
+.compare_label_before,
+.compare_label_after {
+  position: absolute;
+  z-index: 2;
+  top: pad(4);
+  padding: pad(2) pad(3);
+  border-radius: variables.$radius-medium;
+  background: rgb(255 255 255 / 86%);
+  color: variables.$text-accent;
+  font-size: variables.$text-sm;
+  font-weight: 600;
+}
+
+.compare_label_before {
+  left: pad(4);
+}
+
+.compare_label_after {
+  right: pad(4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pad(4);
+
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(var(--mdx-grid-columns), minmax(0, 1fr));
+  }
+}
+
+.card {
+  padding: pad(5);
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  border: 1px solid variables.$border-accent;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-white;
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.toc {
+  padding: pad(5);
+  display: flex;
+  flex-direction: column;
+  gap: pad(4);
+
+  border: 1px solid variables.$border-accent;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+
+  strong {
+    color: variables.$text-accent;
+    font-size: variables.$text-lg;
+  }
+
+  ol {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  li {
+    counter-increment: toc;
+    border-top: 1px solid rgb(184 197 220 / 45%);
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  a {
+    padding: pad(3) 0;
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: pad(3);
+    color: variables.$text-accent;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      color variables.$transition ease;
+
+    &::before {
+      content: counter(toc, decimal-leading-zero);
+      color: variables.$text-primary;
+      font-size: variables.$text-sm;
+      font-weight: 600;
+    }
+
+    &:hover {
+      color: variables.$text-primary;
+    }
+  }
+}

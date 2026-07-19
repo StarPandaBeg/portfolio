@@ -78,6 +78,57 @@ src/
 
 Основной контент сайта редактируется в `src/config.tsx`: опыт, достижения, проекты, технологии и контакты.
 
+## MDX-статьи
+
+Проект поддерживает MDX: Markdown вместе с React-компонентами.
+
+Статьи лежат в `src/content/news/` и открываются по URL:
+
+```text
+/news/<имя-файла-без-mdx>
+```
+
+Например:
+
+```text
+/news/logistics-platform
+```
+
+Внутри MDX можно экспортировать `frontmatter`:
+
+```mdx
+export const frontmatter = {
+  title: "Название статьи",
+  description: "Краткое описание",
+  date: "2026-07-19",
+};
+```
+
+React-компоненты для MDX лежат в `src/components/mdx/`.
+
+Доступные компоненты:
+
+- `ProjectNote` — выделенная заметка или блок «Кейс».
+- `TechStack` — список технологий в виде чипов.
+- `MediaImage` — одиночная картинка с подписью.
+- `ImageGallery` — адаптивная галерея картинок.
+- `VideoBlock` — embed-видео или локальное видео из `public`.
+- `LocalVideo` — явная обертка для локального видео.
+- `BeforeAfter` — интерактивное сравнение «было/стало».
+- `MdxGrid` — сетка на 2 или 3 колонки.
+- `MdxCard` — карточка внутри статьи.
+- `TableOfContents` — ручное оглавление с якорными ссылками.
+
+Локальное видео можно положить, например, в `public/videos/demo.mp4` и вставить:
+
+```mdx
+<LocalVideo
+  src="/videos/demo.mp4"
+  poster="/projects/dapp_1.png"
+  caption="Демо проекта."
+/>
+```
+
 ## Деплой
 
 Деплой настроен через GitHub Actions в `.github/workflows/build.yml`.
