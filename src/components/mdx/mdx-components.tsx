@@ -1,6 +1,8 @@
 import Chip from "@/components/ui/chip/chip";
 import type { CSSProperties, ReactNode } from "react";
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import { HiArrowsPointingOut, HiXMark } from "react-icons/hi2";
 import styles from "./mdx-components.module.scss";
 
 export function ProjectNote({
@@ -12,7 +14,7 @@ export function ProjectNote({
 }) {
   return (
     <aside className={styles.note}>
-      <strong>{title}</strong>
+      <h3>{title}</h3>
       <div>{children}</div>
     </aside>
   );
@@ -38,23 +40,62 @@ export function MediaImage({
   src,
   alt,
   caption,
+  lightboxCaption,
+  zoomable = false,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  lightboxCaption?: string;
+  zoomable?: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const fullscreenCaption = lightboxCaption ?? caption;
+  const image = <img src={src} alt={alt} />;
+
   return (
     <figure className={styles.media}>
-      <img src={src} alt={alt} />
+      {zoomable ? (
+        <button
+          className={styles.zoom_trigger}
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-label="Открыть изображение на весь экран"
+        >
+          {image}
+          <span aria-hidden="true">
+            <HiArrowsPointingOut />
+          </span>
+        </button>
+      ) : (
+        image
+      )}
       {caption && <figcaption>{caption}</figcaption>}
+      {zoomable && (
+        <ImageLightbox
+          src={src}
+          alt={alt}
+          open={isOpen}
+          caption={fullscreenCaption}
+          onClose={() => setIsOpen(false)}
+        />
+      )}
     </figure>
   );
 }
 
 export function ImageGallery({
   images,
+  zoomable = false,
 }: {
-  images: { src: string; alt: string; caption?: string }[];
+  images: {
+    src: string;
+    alt: string;
+    caption?: string;
+    lightboxCaption?: string;
+    zoomable?: boolean;
+  }[];
+  zoomable?: boolean;
 }) {
   return (
     <div className={styles.gallery}>
@@ -63,10 +104,75 @@ export function ImageGallery({
           src={image.src}
           alt={image.alt}
           caption={image.caption}
+          lightboxCaption={image.lightboxCaption}
+          zoomable={image.zoomable ?? zoomable}
           key={image.src}
         />
       ))}
     </div>
+  );
+}
+
+export function ImageStack({
+  images,
+  zoomable = false,
+}: {
+  images: {
+    src: string;
+    alt: string;
+    caption?: string;
+    lightboxCaption?: string;
+    zoomable?: boolean;
+  }[];
+  zoomable?: boolean;
+}) {
+  return (
+    <div className={styles.image_stack}>
+      {images.map((image) => (
+        <MediaImage
+          src={image.src}
+          alt={image.alt}
+          caption={image.caption}
+          lightboxCaption={image.lightboxCaption}
+          zoomable={image.zoomable ?? zoomable}
+          key={image.src}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function ImageLightbox({
+  src,
+  alt,
+  caption,
+  open,
+  onClose,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  open: boolean;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+
+  return createPortal(
+    <div className={styles.lightbox} onMouseDown={onClose}>
+      <button
+        className={styles.lightbox_close}
+        type="button"
+        aria-label="Закрыть изображение"
+        onClick={onClose}
+      >
+        <HiXMark aria-hidden="true" />
+      </button>
+      <figure onMouseDown={(event) => event.stopPropagation()}>
+        <img src={src} alt={alt} />
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    </div>,
+    document.body,
   );
 }
 
@@ -211,14 +317,29 @@ export function MdxCard({
   title,
   children,
 }: {
-  title: string;
+  title?: string;
   children: ReactNode;
 }) {
   return (
     <section className={styles.card}>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
       <div>{children}</div>
     </section>
+  );
+}
+
+export function MetricCard({
+  value,
+  label,
+}: {
+  value: string | number;
+  label: string;
+}) {
+  return (
+    <div className={styles.metric_card}>
+      <strong>{value}</strong>
+      <span>{label}</span>
+    </div>
   );
 }
 

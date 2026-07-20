@@ -76,7 +76,32 @@ src/
   config.tsx
 ```
 
-Основной контент сайта редактируется в `src/config.tsx`: опыт, достижения, проекты, технологии и контакты.
+Основной контент сайта редактируется в `src/config.tsx`: опыт, достижения, технологии и контакты.
+
+Проекты лежат отдельно в `src/content/projects/items/`. Каждый проект — это `.ts` файл с типизированным описанием:
+
+```ts
+import type { ProjectEntry } from "../types";
+
+const project: ProjectEntry = {
+  slug: "driver-app",
+  order: 2,
+  title: "Мобильное приложение водителя",
+  description: "PWA и Android-приложение для организации перевозки грузов",
+  stack: ["Angular", "TypeScript", "Capacitor"],
+  image: "/projects/dapp_1.png",
+  role: "Что я делал в проекте",
+  features: ["Offline-режим", "Синхронизация данных"],
+  article: {
+    href: "/news/driver-app",
+    label: "Читать инженерную статью",
+  },
+};
+
+export default project;
+```
+
+Порядок отображения управляется полем `order`.
 
 ## MDX-статьи
 
@@ -119,6 +144,29 @@ React-компоненты для MDX лежат в `src/components/mdx/`.
 - `MdxGrid` — сетка на 2 или 3 колонки.
 - `MdxCard` — карточка внутри статьи.
 - `TableOfContents` — ручное оглавление с якорными ссылками.
+
+Картинки можно сделать открываемыми на весь экран:
+
+```mdx
+<MediaImage
+  src="/projects/dapp_1.png"
+  alt="Экран приложения"
+  caption="Можно открыть по клику."
+  zoomable
+/>
+```
+
+Для галереи можно включить это сразу для всех картинок:
+
+```mdx
+<ImageGallery
+  zoomable
+  images={[
+    { src: "/projects/dapp_1.png", alt: "Экран 1" },
+    { src: "/projects/dapp_2.png", alt: "Экран 2" },
+  ]}
+/>
+```
 
 Локальное видео можно положить, например, в `public/videos/demo.mp4` и вставить:
 

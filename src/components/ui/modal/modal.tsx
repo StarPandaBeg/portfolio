@@ -12,6 +12,7 @@ import styles from "./modal.module.scss";
 export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   children: ReactNode;
   open: boolean;
+  size?: "default" | "wide";
   title: ReactNode;
   onClose: () => void;
 }
@@ -20,6 +21,7 @@ export default function Modal({
   children,
   className,
   open,
+  size = "default",
   title,
   onClose,
   ...props
@@ -57,7 +59,7 @@ export default function Modal({
       }}
     >
       <div
-        className={cn(styles.modal, className)}
+        className={cn(styles.modal, size === "wide" && styles.wide, className)}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

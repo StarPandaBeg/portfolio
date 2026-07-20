@@ -1,4 +1,4 @@
-import { projects } from "@/config";
+import { projects } from "@/content/projects";
 import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
 import { Link } from "react-router";

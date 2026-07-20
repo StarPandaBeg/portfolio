@@ -1,0 +1,185 @@
+@use "@/assets/scss/variables";
+
+.project_page {
+  @include grid-col(12);
+
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: pad(8) pad(5);
+}
+
+.not_found {
+  @include grid-col(12);
+
+  min-height: min(640px, 70vh);
+  padding: pad(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: pad(4);
+  text-align: center;
+
+  border: 1px solid variables.$border-accent;
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+
+  > span {
+    color: variables.$text-primary;
+    font-size: variables.$heading-lg;
+    font-weight: 600;
+  }
+
+  h1 {
+    max-width: 720px;
+    font-size: clamp(2rem, 8vw, variables.$heading-lg);
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 620px;
+    color: variables.$text-secondary;
+    font-size: variables.$text-lg;
+    line-height: 1.4;
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: pad(3);
+  }
+}
+
+.hero {
+  grid-column: 1 / -1;
+  padding: pad(4) 0 pad(8);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: pad(5);
+  border-bottom: 1px solid variables.$border-accent;
+}
+
+.back {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  padding: pad(2) pad(3);
+  border-radius: variables.$radius-medium;
+  background: variables.$bg-accent;
+  color: variables.$text-secondary;
+  font-size: variables.$text-sm;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background variables.$transition ease,
+    color variables.$transition ease;
+
+  &:hover {
+    background: variables.$border-accent;
+    color: variables.$text-accent;
+  }
+}
+
+.hero_text {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: pad(3);
+
+  h1 {
+    max-width: 920px;
+    color: variables.$text-accent;
+    font-size: clamp(2.25rem, 8vw, 4.5rem);
+    line-height: 1.1;
+  }
+
+  p:not(.eyebrow) {
+    max-width: 860px;
+    color: variables.$text-secondary;
+    font-size: clamp(1.125rem, 2.4vw, 1.5rem);
+    line-height: 1.35;
+  }
+}
+
+.eyebrow {
+  color: variables.$text-muted;
+  font-size: variables.$text-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.article_link {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: pad(1);
+  width: max-content;
+  color: variables.$text-primary;
+  font-size: variables.$text-md;
+  font-weight: 600;
+  text-decoration: none;
+
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    transition: transform variables.$transition ease;
+  }
+
+  &:hover {
+    text-decoration: underline;
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.content {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: pad(5);
+  color: variables.$text-secondary;
+  font-size: variables.$text-md;
+  line-height: 1.65;
+
+  h1,
+  h2,
+  h3 {
+    color: variables.$text-accent;
+  }
+
+  ul,
+  ol {
+    padding-left: pad(6);
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: pad(1);
+    color: variables.$text-primary;
+    font-weight: 600;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: variables.$radius-medium;
+    object-fit: cover;
+  }
+}
+
+@include breakpoint-up("lg") {
+  .hero_text {
+    grid-column: 1 / span 9;
+  }
+
+  .article_link {
+    grid-column: 10 / -1;
+    align-self: end;
+    justify-self: end;
+  }
+}

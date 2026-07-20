@@ -1,0 +1,33 @@
+@use "@/assets/scss/variables";
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: pad(4);
+
+  img {
+    max-width: 100%;
+    border-radius: variables.$radius-medium;
+    object-fit: cover;
+  }
+
+  a {
+    width: max-content;
+    color: variables.$text-primary;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul,
+  ol {
+    list-style-position: inside;
+  }
+
+  h3 {
+    text-transform: uppercase;
+  }
+}

@@ -1,17 +1,11 @@
 import Chip from "@/components/ui/chip/chip";
+import ProjectModal from "@/components/projects/project-modal";
+import type { ProjectEntry } from "@/content/projects";
 import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
+import { useCallback, useState } from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
-import { Link } from "react-router";
 import styles from "./project-card.module.scss";
-
-export interface ProjectEntry {
-  title: string;
-  description: string;
-  stack: string[];
-  href?: string;
-  image?: string;
-}
 
 export type ProjectCardProps = HTMLAttributes<HTMLElement> & {
   project: ProjectEntry;
@@ -22,41 +16,53 @@ export default function ProjectCard({
   project,
   ...props
 }: ProjectCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
+  const hasContent =
+    Boolean(project.title) ||
+    Boolean(project.description) ||
+    project.stack.length > 0;
   const preview = (
     <>
       {project.image && <img src={project.image} alt="" />}
-      {project.href && (
-        <span aria-hidden="true">
-          <HiArrowUpRight />
-        </span>
-      )}
+      <span aria-hidden="true">
+        <HiArrowUpRight />
+      </span>
     </>
   );
 
   return (
-    <article className={cn(styles.card, className)} {...props}>
-      {project.href ? (
-        <Link
+    <>
+      <article className={cn(styles.card, className)} {...props}>
+        <button
           className={styles.preview}
-          to={project.href}
+          type="button"
+          onClick={() => setIsModalOpen(true)}
           aria-label={project.title}
         >
           {preview}
-        </Link>
-      ) : (
-        <div className={styles.preview}>{preview}</div>
-      )}
-      <div className={styles.content}>
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-        <div className={styles.stack} aria-label="Технологии">
-          {project.stack.map((technology) => (
-            <Chip variant="secondary" key={technology}>
-              {technology}
-            </Chip>
-          ))}
-        </div>
-      </div>
-    </article>
+        </button>
+        {hasContent && (
+          <div className={styles.content}>
+            {project.title && <h3>{project.title}</h3>}
+            {project.description && <p>{project.description}</p>}
+            {project.stack.length > 0 && (
+              <div className={styles.stack} aria-label="Технологии">
+                {project.stack.map((technology) => (
+                  <Chip variant="secondary" key={technology}>
+                    {technology}
+                  </Chip>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </article>
+      <ProjectModal
+        open={isModalOpen}
+        project={project}
+        onClose={closeModal}
+      />
+    </>
   );
 }

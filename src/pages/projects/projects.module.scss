@@ -25,9 +25,12 @@
   overflow: hidden;
   aspect-ratio: 16 / 7;
   display: block;
+  width: 100%;
 
+  border: 0;
   border-radius: variables.$radius-medium;
   background: #d9d9d9;
+  cursor: pointer;
   transition: background variables.$transition ease;
 
   img {
@@ -85,8 +88,12 @@
   align-items: center;
   gap: pad(1);
   width: max-content;
+  padding: 0;
 
+  border: 0;
+  background: none;
   color: variables.$text-primary;
+  cursor: pointer;
   font-size: variables.$text-md;
   font-weight: 600;
   text-decoration: none;
@@ -122,3 +129,4 @@
     justify-content: flex-end;
   }
 }
+

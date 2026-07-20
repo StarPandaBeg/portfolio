@@ -11,6 +11,7 @@ interface ImportMeta {
 
 declare module "*.mdx" {
   import type { ComponentType } from "react";
+  import type { ProjectEntry } from "@/content/projects";
 
   export const frontmatter: {
     title: string;
@@ -22,6 +23,7 @@ declare module "*.mdx" {
       caption?: string;
     };
   };
+  export const project: Omit<ProjectEntry, "Details">;
 
   const MDXComponent: ComponentType;
   export default MDXComponent;

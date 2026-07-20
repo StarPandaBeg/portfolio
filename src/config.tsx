@@ -2,7 +2,6 @@ import { HiTruck } from "react-icons/hi2";
 import type { ContactEntry } from "./components/contacts/contacts";
 import type { AchievementEntry } from "./pages/index/components/experience/achievement-card";
 import type { JobEntry } from "./pages/index/components/experience/job-row";
-import type { ProjectEntry } from "./pages/index/components/projects/project-card";
 import type { TechnologyGroup } from "./pages/index/components/technologies/technologies";
 
 export const jobs: JobEntry[] = [
@@ -117,69 +116,6 @@ export const achievements: AchievementEntry[] = [
         },
       ],
     },
-  },
-];
-
-export const projects: ProjectEntry[] = [
-  {
-    title: "Платформа логистики",
-    description: "B2B-платформа для управления логистическими операциями",
-    stack: ["Angular", "TypeScript", "NodeJS"],
-    image: "/projects/web_1.png",
-  },
-  {
-    title: "Мобильное приложение водителя",
-    description: "PWA и Android-приложение для организации перевозки грузов",
-    stack: ["Angular", "TypeScript", "Capacitor"],
-    image: "/projects/dapp_1.png",
-    href: "/news/driver-app",
-  },
-  {
-    title: "Онлайн-редактор документов",
-    description:
-      "Редактор документов с совместным доступом и функционалом согласующих",
-    stack: ["React", "TypeScript", "TipTap", "yJS", "NestJS"],
-    image: "/projects/word_1.png",
-  },
-  {
-    title: "ИИ-генератор презентаций",
-    description: "Автоматический генератор и редактор презентаций на основе ИИ",
-    stack: ["React", "TypeScript", "NestJS", "Express", "NATS"],
-    image: "/projects/pai_1.png",
-  },
-  {
-    title: "Система распределения задач",
-    description:
-      "Автоматический таск-трекер с распределением задач по множеству критерий",
-    stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
-    image: "/projects/plan_1.jpg",
-  },
-  {
-    title: "Календарь мероприятий",
-    description:
-      "Календарь мероприятий МинСпорта с автоматическим парсингом официального PDF-расписания",
-    stack: ["React", "SCSS", "TypeScript", "NestJS"],
-    image: "/projects/calendar_1.png",
-  },
-  {
-    title: "ИИ-анализ инцидентов",
-    description: "Автоматический анализ инцидентов на видео в реальном времени",
-    stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
-    image: "/projects/incident_1.png",
-  },
-  {
-    title: "Генератор случайных чисел",
-    description:
-      "Генерация лотерейных комбинаций, использующая видеопотоки в качестве элемента случайности",
-    stack: ["React", "React Query", "Tailwind", "MotionJS"],
-    image: "/projects/generator_1.jpg",
-  },
-  {
-    title: "Генератор лотерейных механик",
-    description:
-      "Умная симуляция лотерейных билетов с возможностью тестирования тиражей и аналитики",
-    stack: ["React", "React Query", "Tailwind", "MotionJS"],
-    image: "/projects/lottery_1.png",
   },
 ];
 

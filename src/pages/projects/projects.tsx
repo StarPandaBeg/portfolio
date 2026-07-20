@@ -1,10 +1,16 @@
 import Chip from "@/components/ui/chip/chip";
-import { projects } from "@/config";
+import ProjectModal from "@/components/projects/project-modal";
+import { projects } from "@/content/projects";
+import { useCallback, useState } from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { Link } from "react-router";
 import styles from "./projects.module.scss";
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState(projects[0] ?? null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
+
   return (
     <section className={styles.projects_page}>
       <header>
@@ -13,19 +19,17 @@ export default function ProjectsPage() {
       <div className={styles.feed}>
         {projects.map((project, index) => (
           <article className={styles.project} key={`${project.title}-${index}`}>
-            {project.href ? (
-              <Link
-                className={styles.preview}
-                to={project.href}
-                aria-label={project.title}
-              >
-                {project.image && <img src={project.image} alt="" />}
-              </Link>
-            ) : (
-              <div className={styles.preview}>
-                {project.image && <img src={project.image} alt="" />}
-              </div>
-            )}
+            <button
+              className={styles.preview}
+              type="button"
+              onClick={() => {
+                setSelectedProject(project);
+                setIsModalOpen(true);
+              }}
+              aria-label={project.title}
+            >
+              {project.image && <img src={project.image} alt="" />}
+            </button>
             <div className={styles.content}>
               <div className={styles.info}>
                 <h2>{project.title}</h2>
@@ -38,16 +42,24 @@ export default function ProjectsPage() {
                   </Chip>
                 ))}
               </div>
-              {project.href && (
-                <Link className={styles.link} to={project.href}>
-                  Перейти к проекту
-                  <HiArrowUpRight aria-hidden="true" />
-                </Link>
-              )}
+              <Link
+                className={styles.link}
+                to={`/projects/${project.slug}`}
+              >
+                Открыть страницу
+                <HiArrowUpRight aria-hidden="true" />
+              </Link>
             </div>
           </article>
         ))}
       </div>
+      {selectedProject && (
+        <ProjectModal
+          open={isModalOpen}
+          project={selectedProject}
+          onClose={closeModal}
+        />
+      )}
     </section>
   );
 }
