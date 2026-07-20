@@ -8,3 +8,10 @@
 
   --padding-step: #{variables.$padding-step};
 }
+
+@media (max-width: 640px) {
+  :root {
+    --page-padding-horizontal: #{functions.pad(4)};
+    --page-padding-vertical: #{functions.pad(10)};
+  }
+}

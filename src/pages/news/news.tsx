@@ -66,6 +66,24 @@ export default function NewsPage() {
     };
   }, [pageDescription, pageTitle]);
 
+  useEffect(() => {
+    const tables = document.querySelectorAll<HTMLTableElement>(
+      `.${styles.content} table`,
+    );
+
+    tables.forEach((table) => {
+      const headers = Array.from(table.querySelectorAll("thead th")).map(
+        (header) => header.textContent?.trim() ?? "",
+      );
+
+      table.querySelectorAll<HTMLTableRowElement>("tbody tr").forEach((row) => {
+        row.querySelectorAll<HTMLTableCellElement>("td").forEach((cell, i) => {
+          if (headers[i]) cell.dataset.label = headers[i];
+        });
+      });
+    });
+  }, [article]);
+
   if (!article) {
     return (
       <section className={styles.not_found}>

@@ -228,6 +228,62 @@
     color: variables.$text-accent;
     font-weight: 600;
   }
+
+  @media (max-width: 640px) {
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+
+    table {
+      background: transparent;
+    }
+
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: pad(3);
+    }
+
+    tr {
+      overflow: hidden;
+      border: 1px solid rgb(184 197 220 / 45%);
+      border-radius: variables.$radius-medium;
+      background: variables.$bg-white;
+    }
+
+    td {
+      padding: pad(3) pad(4);
+      border: 0;
+      border-top: 1px solid rgb(184 197 220 / 35%);
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      &::before {
+        content: attr(data-label);
+        margin-bottom: pad(1);
+        display: block;
+        color: variables.$text-muted;
+        font-size: variables.$text-sm;
+        font-weight: 600;
+      }
+    }
+  }
 }
 
 .scroll_top {
