@@ -1,0 +1,18 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "task-planner",
+  order: 5,
+  title: "Система распределения задач",
+  description:
+    "Автоматический таск-трекер с распределением задач по множеству критерий",
+  stack: ["React", "Zustand", "SCSS", "TypeScript", "NodeJS"],
+  image: "/projects/plan_1.jpg",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Настройка критериев распределения, визуализация задач и статусов, клиентское
+  состояние на Zustand.
+</ProjectNote>

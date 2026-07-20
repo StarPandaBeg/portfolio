@@ -1,0 +1,17 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "presentation-ai",
+  order: 4,
+  title: "ИИ-генератор презентаций",
+  description: "Автоматический генератор и редактор презентаций на основе ИИ",
+  stack: ["React", "TypeScript", "NestJS", "Express", "NATS"],
+  image: "/projects/pai_1.png",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Генерация структуры презентации, редактирование результата после генерации и
+  асинхронные сценарии обработки задач.
+</ProjectNote>

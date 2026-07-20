@@ -1,0 +1,31 @@
+import {
+  MdxColumns,
+  MediaImage,
+  ProjectNote,
+  TechStack,
+} from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "logistics-platform",
+  order: 1,
+  title: "Платформа логистики",
+  description: "B2B-платформа для управления логистическими операциями",
+  stack: ["Angular", "TypeScript", "NodeJS"],
+  image: "/projects/web_1.png",
+};
+
+<MdxColumns ratio="1:2">
+  <MediaImage src="/projects/web_1.png" alt="Экран платформы логистики" zoomable />
+  <div>
+    <p>
+      B2B-платформа для управления договорами, заявками, перевозками и
+      маршрутами.
+    </p>
+    <TechStack items={project.stack} />
+    <ProjectNote title="Что я делал">
+      Разрабатывал веб-платформу, работал со сложными бизнес-сценариями
+      перевозок, интегрировал внешние сервисы и поддерживал операторские
+      сценарии.
+    </ProjectNote>
+  </div>
+</MdxColumns>

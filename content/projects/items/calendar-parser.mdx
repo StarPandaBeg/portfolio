@@ -1,0 +1,18 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "calendar-parser",
+  order: 6,
+  title: "Календарь мероприятий",
+  description:
+    "Календарь мероприятий МинСпорта с автоматическим парсингом официального PDF-расписания",
+  stack: ["React", "SCSS", "TypeScript", "NestJS"],
+  image: "/projects/calendar_1.png",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Парсинг PDF-расписаний, фильтрация и просмотр мероприятий, календарное
+  представление данных.
+</ProjectNote>

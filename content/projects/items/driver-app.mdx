@@ -1,0 +1,101 @@
+import {
+  ImageStack,
+  MdxColumns,
+  ProjectNote,
+  TechStack,
+  MdxCard,
+  MdxGrid,
+  MetricCard,
+} from "@/components/mdx/mdx-components";
+import { Link } from "react-router";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+
+export const project = {
+  slug: "driver-app",
+  order: 2,
+  title: "Мобильное приложение водителя",
+  description: "PWA и Android-приложение для организации перевозки грузов",
+  stack: ["Angular", "TypeScript", "Capacitor", "Ionic", "RxJS", "PWA"],
+  image: "/projects/dapp_1.png",
+};
+
+<MdxColumns ratio="1:2">
+  <ImageStack
+    zoomable
+    images={[
+      {
+        src: "/projects/dapp_1.png",
+        alt: "Экран приложения водителя",
+        lightboxCaption: "Экраны приложения водителя",
+      },
+      {
+        src: "/projects/dapp_8.png",
+        alt: "Экран приложения водителя",
+        lightboxCaption: "Профиль пользователя",
+      },
+      {
+        src: "/projects/dapp_9.png",
+        alt: "Экран приложения водителя",
+        lightboxCaption: "Профиль пользователя",
+      },
+    ]}
+  />
+  <div className="text-column">
+    <ProjectNote title="Описание проекта">
+      <p>
+        Мобильное приложение для водителей грузовиков. Решение позволяет
+        получать задания на перевозку, строить маршруты, отмечать их прогресс и выполнение, а также предоставляет возможность отслеживания статусов и местоположения перевозчиков для операторов компании.
+      </p>
+      <br/>
+      <p>
+        Приложение работает **в условиях нестабильной мобильной связи** и обеспечивает
+        сохранность данных до восстановления соединения.
+      </p>
+    </ProjectNote>
+    
+    <h3>Моя роль</h3>
+    <ul>
+      <li>Разработка и поддержка мобильного приложения **с нуля**</li>
+      <li>**Проектирование offline-архитектуры** и архитектуры приложения в целом</li>
+      <li>Разработка и поддержка **Android и iPhone-версии (PWA)** через Capacitor</li>
+      <li>Обратная совместимость с legacy-версией мобильного приложения</li>
+    </ul>
+
+    {/* <h3>Результат</h3>
+    <MdxGrid columns={2}>
+     <MdxCard title="Offline-доступ">
+       Работа в условиях нестабильной мобильной связи, сохранение данных до восстановления соединения
+      </MdxCard>
+      <MdxCard title="Поддержка разных платформ">
+        Одно приложение для Android, iOS и WEB на основе одного и того же кода
+      </MdxCard>
+      <MdxCard title="Смена аккаунтов">
+        Возможность смены аккаунтов без выхода из приложения
+      </MdxCard>
+      <MdxCard title="Поддержка разных платформ">
+        Интеграция с существующей системой
+      </MdxCard>
+    </MdxGrid> */}
+
+    <h3>Ключевые особенности</h3>
+    <ol>
+      <li>Работа в условиях нестабильной сети</li>
+      <li>Синхронизация после восстановления соединения</li>
+      <li>Поддержка нескольких аккаунтов</li>
+      <li>**Общая кодовая база** для Web/PWA/Android</li>
+    </ol>
+
+    <h3>Технологии</h3>
+    <TechStack items={project.stack} />
+
+    <MdxCard>
+      Подробный разбор проекта: причины переписывания приложения, новая архитектура, offline-режим и ключевые технические решения
+
+      <br/>
+      <Link to="/news/driver-app" target="_blank">
+        Читать связанную статью <HiArrowTopRightOnSquare />
+      </Link>
+    </MdxCard>
+
+  </div>
+</MdxColumns>

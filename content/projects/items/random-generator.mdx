@@ -1,0 +1,18 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "random-generator",
+  order: 8,
+  title: "Генератор случайных чисел",
+  description:
+    "Генерация лотерейных комбинаций, использующая видеопотоки в качестве элемента случайности",
+  stack: ["React", "React Query", "Tailwind", "MotionJS"],
+  image: "/projects/generator_1.jpg",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Генерация лотерейных комбинаций, видеопоток как часть сценария случайности,
+  анимации и интерактивные состояния.
+</ProjectNote>

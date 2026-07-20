@@ -1,0 +1,18 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "lottery-generator",
+  order: 9,
+  title: "Генератор лотерейных механик",
+  description:
+    "Умная симуляция лотерейных билетов с возможностью тестирования тиражей и аналитики",
+  stack: ["React", "React Query", "Tailwind", "MotionJS"],
+  image: "/projects/lottery_1.png",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Симуляция лотерейных билетов, тестирование тиражей и отображение аналитики по
+  результатам.
+</ProjectNote>

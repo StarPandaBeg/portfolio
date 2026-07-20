@@ -1,0 +1,18 @@
+import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+
+export const project = {
+  slug: "document-editor",
+  order: 3,
+  title: "Онлайн-редактор документов",
+  description:
+    "Редактор документов с совместным доступом и функционалом согласующих",
+  stack: ["React", "TypeScript", "TipTap", "yJS", "NestJS"],
+  image: "/projects/word_1.png",
+};
+
+<p>{project.description}</p>
+<TechStack items={project.stack} />
+<ProjectNote title="Что внутри">
+  Редактирование документов в браузере, сценарии согласования, совместный
+  доступ и интеграция редактора TipTap.
+</ProjectNote>
