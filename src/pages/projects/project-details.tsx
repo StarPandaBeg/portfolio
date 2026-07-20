@@ -22,7 +22,7 @@ export default function ProjectDetailsPage() {
   const pageTitle = project?.title ?? "Проект не найден";
   const pageDescription =
     project?.description ??
-    "Проверь slug в адресной строке или создай MDX-файл в src/content/projects/items.";
+    "Проверь slug в адресной строке или создай MDX-файл в content/projects/items.";
 
   useEffect(() => {
     document.title = pageTitle;

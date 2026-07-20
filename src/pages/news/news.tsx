@@ -18,7 +18,7 @@ type NewsModule = {
   };
 };
 
-const articles = import.meta.glob<NewsModule>("../../content/news/*.mdx", {
+const articles = import.meta.glob<NewsModule>("../../../content/news/*.mdx", {
   eager: true,
 });
 
@@ -31,7 +31,7 @@ const defaultMeta = {
 function getArticle(slug?: string) {
   if (!slug) return null;
 
-  return articles[`../../content/news/${slug}.mdx`] ?? null;
+  return articles[`../../../content/news/${slug}.mdx`] ?? null;
 }
 
 function setMetaContent(selector: string, content: string) {
@@ -46,7 +46,7 @@ export default function NewsPage() {
   const pageTitle = article?.frontmatter?.title ?? "Статья не найдена";
   const pageDescription =
     article?.frontmatter?.description ??
-    "Проверь slug в адресной строке или создай MDX-файл в src/content/news.";
+    "Проверь slug в адресной строке или создай MDX-файл в content/news.";
 
   useEffect(() => {
     document.title = pageTitle;

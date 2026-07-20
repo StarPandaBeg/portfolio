@@ -78,27 +78,25 @@ src/
 
 Основной контент сайта редактируется в `src/config.tsx`: опыт, достижения, технологии и контакты.
 
-Проекты лежат отдельно в `src/content/projects/items/`. Каждый проект — это `.ts` файл с типизированным описанием:
+MDX-контент вынесен из `src` в корневую папку `content/`, чтобы `src` оставался папкой исходников приложения.
 
-```ts
-import type { ProjectEntry } from "../types";
+Проекты лежат отдельно в `content/projects/items/`. Каждый проект — это `.mdx` файл с экспортом `project` и телом карточки/страницы:
 
-const project: ProjectEntry = {
+```mdx
+export const project = {
   slug: "driver-app",
   order: 2,
   title: "Мобильное приложение водителя",
   description: "PWA и Android-приложение для организации перевозки грузов",
   stack: ["Angular", "TypeScript", "Capacitor"],
   image: "/projects/dapp_1.png",
-  role: "Что я делал в проекте",
-  features: ["Offline-режим", "Синхронизация данных"],
   article: {
     href: "/news/driver-app",
     label: "Читать инженерную статью",
   },
 };
 
-export default project;
+<p>Описание проекта, картинки, списки и любые MDX-компоненты.</p>
 ```
 
 Порядок отображения управляется полем `order`.
@@ -107,7 +105,7 @@ export default project;
 
 Проект поддерживает MDX: Markdown вместе с React-компонентами.
 
-Статьи лежат в `src/content/news/` и открываются по URL:
+Статьи лежат в `content/news/` и открываются по URL:
 
 ```text
 /news/<имя-файла-без-mdx>

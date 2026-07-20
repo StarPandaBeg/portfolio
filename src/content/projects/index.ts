@@ -6,9 +6,12 @@ type ProjectModule = {
   project: Omit<ProjectEntry, "Details">;
 };
 
-const modules = import.meta.glob<ProjectModule>("./items/*.mdx", {
-  eager: true,
-});
+const modules = import.meta.glob<ProjectModule>(
+  "../../../content/projects/items/*.mdx",
+  {
+    eager: true,
+  },
+);
 
 export const projects = Object.values(modules)
   .map((module) => ({
