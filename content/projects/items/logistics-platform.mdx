@@ -1,31 +1,57 @@
 import {
+  ImageStack,
   MdxColumns,
   MediaImage,
   ProjectNote,
   TechStack,
+  MdxCard,
+  MdxGrid,
+  MetricCard,
 } from "@/components/mdx/mdx-components";
+import { Link } from "react-router";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 
 export const project = {
   slug: "logistics-platform",
   order: 1,
-  title: "Платформа логистики",
+  title: "Платформа логистических операций",
   description: "B2B-платформа для управления логистическими операциями",
-  stack: ["Angular", "TypeScript", "NodeJS"],
+  stack: ["Angular", "TypeScript", "RxJS", "Ionic", "NodeJS", "Superset", "Sentry"],
   image: "/projects/web_1.png",
 };
 
 <MdxColumns ratio="1:2">
   <MediaImage src="/projects/web_1.png" alt="Экран платформы логистики" zoomable />
-  <div>
-    <p>
-      B2B-платформа для управления договорами, заявками, перевозками и
-      маршрутами.
-    </p>
-    <TechStack items={project.stack} />
-    <ProjectNote title="Что я делал">
-      Разрабатывал веб-платформу, работал со сложными бизнес-сценариями
-      перевозок, интегрировал внешние сервисы и поддерживал операторские
-      сценарии.
+  <div className="text-column">
+    <ProjectNote title="Описание проекта">
+      <p>
+        B2B-платформа для управления логистическими операциями. Решение позволяет компаниям-операторам заключать договоры с организациями, создавать заявки на перевозку, отслеживать транспортные средства в реальном времени, а также формировать отчеты и управлять финансовыми операциями.
+      </p>
     </ProjectNote>
+
+    <MdxGrid columns={3}>
+      <MetricCard value="136000+" label="организаций в системе" />
+      <MetricCard value="87000+" label="договоров" />
+      <MetricCard value="4+" label="года активной разработки" />
+    </MdxGrid>
+
+    <h3>Моя роль</h3>
+    <ul>
+      <li>Разработка нового функционала в рамках существующей архитектуры</li>
+      <li>Создание сложных форм с динамической логикой проверки данных</li>
+      <li>Интеграция внешних систем, таких как _Apache Superset_ и _Sentry_</li>
+    </ul>
+
+    <h3>Ключевые особенности</h3>
+    <ol>
+      <li>Федеральный коммерческий продукт с многолетней разработкой</li>
+      <li>Комплексная ролевая модель с десятками бизнес-сценариев</li>
+      <li>Интеграция с BI-системами и корпоративными сервисами</li>
+      <li>Высокая связность модулей и сложная бизнес-логика</li>
+    </ol>
+
+    <h3>Технологии</h3>
+    <TechStack items={project.stack} />
+
   </div>
 </MdxColumns>
