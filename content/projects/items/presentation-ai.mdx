@@ -1,18 +1,101 @@
 import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+import {
+  ImageStack,
+  MdxColumns,
+  MdxCard,
+  MdxGrid,
+  MetricCard,
+} from "@/components/mdx/mdx-components";
+import { Link } from "react-router";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 
 export const project = {
   slug: "presentation-ai",
   order: 4,
   title: "ИИ-генератор презентаций",
   description: "Автоматический генератор и редактор презентаций на основе ИИ",
-  stack: ["React", "TypeScript", "NestJS", "Express", "NATS"],
+  stack: [
+    "React",
+    "TypeScript",
+    "NestJS",
+    "Express",
+    "NATS",
+    "Python",
+    "Ollama",
+    "PostgreSQL",
+  ],
   image: "/projects/pai_1.png",
-  detailsVisible: false,
 };
 
-<p>{project.description}</p>
-<TechStack items={project.stack} />
-<ProjectNote title="Что внутри">
-  Генерация структуры презентации, редактирование результата после генерации и
-  асинхронные сценарии обработки задач.
-</ProjectNote>
+<MdxColumns ratio="1:2">
+  <div>
+    <ImageStack
+      zoomable
+      images={[
+        {
+          src: "/projects/pai_1.png",
+          alt: "Главный экран редактора",
+          lightboxCaption: "Главный экран редактора",
+        },
+        {
+          src: "/projects/pai_3.png",
+          alt: "Выбор темы",
+          lightboxCaption: "Интерфейс выбора темы оформления",
+        },
+        {
+          src: "/projects/pai_4.png",
+          alt: "Добавление элементов",
+          lightboxCaption: "Редактирование содержимого",
+        },
+        {
+          src: "/projects/pai_2.png",
+          alt: "Настройка генерации слайдов",
+          lightboxCaption: "Настройка генерации слайдов",
+        },
+      ]}
+    />
+  </div>
+  <div className="text-column">
+    <ProjectNote title="Описание проекта">
+      <p>
+        Веб-редактор презентаций с возможностями искуственного интеллекта
+      </p>
+      <br/>
+      <p>
+        Пользователь задаёт тему или описание будущей презентации, после чего система формирует структуру, генерирует содержание и подготавливает готовые слайды для дальнейшего редактирования.
+      </p>
+      {/* <br/>
+      <ul>
+        <li>Создание, редактирование и форматирование документов</li>
+        <li>Поддержка импорта и экспорта в формате DOCX и PDF</li>
+        <li>Совместное редактирование и комментирование в реальном времени</li>
+        <li>Функционал согласования документов</li>
+        <li>История изменений и версий</li>
+      </ul> */}
+    </ProjectNote>
+
+    <ImageStack
+      images={[
+        {
+          src: "/projects/pai_5.png",
+        },
+      ]}
+    />
+
+    <h3>Моя роль</h3>
+    <ul>
+      <li>**Полная разработка системы с нуля**: frontend, backend и AI-компоненты</li>
+      <li>Разработка ML-модулей и интеграция моделей искусственного интеллекта для генерации структуры и содержимого презентаций</li>
+      <li>Создание серверной логики обработки запросов, управления состояниями генерации и взаимодействия между сервисами</li>
+      <li>Разработка пользовательского интерфейса редактора презентаций и механизмов синхронизации данных</li>
+    </ul>
+
+    <ProjectNote>
+      Полный цикл подготовки проекта: от проектирования и реализации функциональности до создания документации, презентации и демонстрации продукта.
+    </ProjectNote>
+
+    <h3>Технологии</h3>
+    <TechStack items={project.stack} />
+
+  </div>
+</MdxColumns>
