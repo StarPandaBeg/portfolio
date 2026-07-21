@@ -18,7 +18,9 @@ function setMetaContent(selector: string, content: string) {
 
 export default function ProjectDetailsPage() {
   const { slug } = useParams();
-  const project = getProject(slug);
+  const matchedProject = getProject(slug);
+  const project =
+    matchedProject?.detailsVisible !== false ? matchedProject : null;
   const pageTitle = project?.title ?? "Проект не найден";
   const pageDescription =
     project?.description ??

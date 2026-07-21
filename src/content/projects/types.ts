@@ -7,6 +7,7 @@ export interface ProjectEntry {
   description: string;
   stack: string[];
   image?: string;
+  detailsVisible?: boolean;
   article?: {
     label?: string;
     href: string;

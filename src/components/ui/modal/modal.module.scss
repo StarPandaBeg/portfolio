@@ -77,11 +77,15 @@
   }
 
   .modal {
-    max-height: calc(100vh - pad(4));
+    max-height: calc(100dvh - pad(4));
   }
 
   .modal_header,
   .modal_content {
     padding: pad(4);
+  }
+
+  .modal_content {
+    padding-bottom: calc(pad(24) + env(safe-area-inset-bottom));
   }
 }

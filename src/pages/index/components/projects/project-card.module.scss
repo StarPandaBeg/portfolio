@@ -44,6 +44,10 @@
   text-decoration: none;
   transition: background variables.$transition ease;
 
+  &:disabled {
+    cursor: default;
+  }
+
   img {
     position: absolute;
     inset: 0;

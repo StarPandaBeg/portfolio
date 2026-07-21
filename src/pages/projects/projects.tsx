@@ -1,15 +1,24 @@
 import Chip from "@/components/ui/chip/chip";
 import ProjectModal from "@/components/projects/project-modal";
-import { projects } from "@/content/projects";
-import { useCallback, useState } from "react";
+import { getProject, projects } from "@/content/projects";
+import { useCallback } from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import styles from "./projects.module.scss";
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState(projects[0] ?? null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModal = useCallback(() => setIsModalOpen(false), []);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedProject = getProject(searchParams.get("project") ?? undefined);
+  const isModalOpen = Boolean(
+    selectedProject && selectedProject.detailsVisible !== false,
+  );
+  const closeModal = useCallback(() => {
+    setSearchParams((params) => {
+      const nextParams = new URLSearchParams(params);
+      nextParams.delete("project");
+      return nextParams;
+    });
+  }, [setSearchParams]);
 
   return (
     <section className={styles.projects_page}>
@@ -22,11 +31,21 @@ export default function ProjectsPage() {
             <button
               className={styles.preview}
               type="button"
+              disabled={project.detailsVisible === false}
               onClick={() => {
-                setSelectedProject(project);
-                setIsModalOpen(true);
+                if (project.detailsVisible === false) return;
+
+                setSearchParams((params) => {
+                  const nextParams = new URLSearchParams(params);
+                  nextParams.set("project", project.slug);
+                  return nextParams;
+                });
               }}
-              aria-label={project.title}
+              aria-label={
+                project.detailsVisible !== false
+                  ? `Открыть проект «${project.title}»`
+                  : `Описание проекта «${project.title}» скоро появится`
+              }
             >
               {project.image && <img src={project.image} alt="" />}
             </button>
@@ -42,13 +61,15 @@ export default function ProjectsPage() {
                   </Chip>
                 ))}
               </div>
-              <Link
-                className={styles.link}
-                to={`/projects/${project.slug}`}
-              >
-                Открыть страницу
-                <HiArrowUpRight aria-hidden="true" />
-              </Link>
+              {project.detailsVisible !== false && (
+                <Link
+                  className={styles.link}
+                  to={`/projects/${project.slug}`}
+                >
+                  Открыть страницу
+                  <HiArrowUpRight aria-hidden="true" />
+                </Link>
+              )}
             </div>
           </article>
         ))}

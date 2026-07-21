@@ -33,6 +33,10 @@
   cursor: pointer;
   transition: background variables.$transition ease;
 
+  &:disabled {
+    cursor: default;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -129,4 +133,3 @@
     justify-content: flex-end;
   }
 }
-

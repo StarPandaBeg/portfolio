@@ -3,8 +3,9 @@ import ProjectModal from "@/components/projects/project-modal";
 import type { ProjectEntry } from "@/content/projects";
 import { cn } from "@sglara/cn";
 import type { HTMLAttributes } from "react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
+import { useSearchParams } from "react-router";
 import styles from "./project-card.module.scss";
 
 export type ProjectCardProps = HTMLAttributes<HTMLElement> & {
@@ -16,8 +17,26 @@ export default function ProjectCard({
   project,
   ...props
 }: ProjectCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModal = useCallback(() => setIsModalOpen(false), []);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const detailsVisible = project.detailsVisible !== false;
+  const isModalOpen =
+    detailsVisible && searchParams.get("project") === project.slug;
+  const openModal = useCallback(() => {
+    if (!detailsVisible) return;
+
+    setSearchParams((params) => {
+      const nextParams = new URLSearchParams(params);
+      nextParams.set("project", project.slug);
+      return nextParams;
+    });
+  }, [detailsVisible, project.slug, setSearchParams]);
+  const closeModal = useCallback(() => {
+    setSearchParams((params) => {
+      const nextParams = new URLSearchParams(params);
+      nextParams.delete("project");
+      return nextParams;
+    });
+  }, [setSearchParams]);
   const hasContent =
     Boolean(project.title) ||
     Boolean(project.description) ||
@@ -25,9 +44,11 @@ export default function ProjectCard({
   const preview = (
     <>
       {project.image && <img src={project.image} alt="" />}
-      <span aria-hidden="true">
-        <HiArrowUpRight />
-      </span>
+      {detailsVisible && (
+        <span aria-hidden="true">
+          <HiArrowUpRight />
+        </span>
+      )}
     </>
   );
 
@@ -37,8 +58,13 @@ export default function ProjectCard({
         <button
           className={styles.preview}
           type="button"
-          onClick={() => setIsModalOpen(true)}
-          aria-label={project.title}
+          onClick={openModal}
+          disabled={!detailsVisible}
+          aria-label={
+            detailsVisible
+              ? `Открыть проект «${project.title}»`
+              : `Описание проекта «${project.title}» скоро появится`
+          }
         >
           {preview}
         </button>
