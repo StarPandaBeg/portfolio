@@ -1,9 +1,22 @@
 import Chip from "@/components/ui/chip/chip";
 import type { CSSProperties, ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { HiArrowsPointingOut, HiXMark } from "react-icons/hi2";
+import {
+  HiArrowsPointingOut,
+  HiChevronLeft,
+  HiChevronRight,
+  HiXMark,
+} from "react-icons/hi2";
 import styles from "./mdx-components.module.scss";
+
+type ImageItem = {
+  src: string;
+  alt: string;
+  caption?: string;
+  lightboxCaption?: string;
+  zoomable?: boolean;
+};
 
 export function ProjectNote({
   title,
@@ -88,13 +101,7 @@ export function ImageGallery({
   images,
   zoomable = false,
 }: {
-  images: {
-    src: string;
-    alt: string;
-    caption?: string;
-    lightboxCaption?: string;
-    zoomable?: boolean;
-  }[];
+  images: ImageItem[];
   zoomable?: boolean;
 }) {
   return (
@@ -117,28 +124,49 @@ export function ImageStack({
   images,
   zoomable = false,
 }: {
-  images: {
-    src: string;
-    alt: string;
-    caption?: string;
-    lightboxCaption?: string;
-    zoomable?: boolean;
-  }[];
+  images: ImageItem[];
   zoomable?: boolean;
 }) {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
-    <div className={styles.image_stack}>
-      {images.map((image) => (
-        <MediaImage
-          src={image.src}
-          alt={image.alt}
-          caption={image.caption}
-          lightboxCaption={image.lightboxCaption}
-          zoomable={image.zoomable ?? zoomable}
-          key={image.src}
+    <>
+      <div className={styles.image_stack}>
+        {images.map((image, index) => {
+          const canZoom = image.zoomable ?? zoomable;
+          const img = <img src={image.src} alt={image.alt} />;
+
+          return (
+            <figure className={styles.media} key={image.src}>
+              {canZoom ? (
+                <button
+                  className={styles.zoom_trigger}
+                  type="button"
+                  onClick={() => setSelectedIndex(index)}
+                  aria-label="Открыть изображение на весь экран"
+                >
+                  {img}
+                  <span aria-hidden="true">
+                    <HiArrowsPointingOut />
+                  </span>
+                </button>
+              ) : (
+                img
+              )}
+              {image.caption && <figcaption>{image.caption}</figcaption>}
+            </figure>
+          );
+        })}
+      </div>
+      {selectedIndex !== null && (
+        <ImageStackLightbox
+          images={images}
+          index={selectedIndex}
+          onChange={setSelectedIndex}
+          onClose={() => setSelectedIndex(null)}
         />
-      ))}
-    </div>
+      )}
+    </>
   );
 }
 
@@ -155,6 +183,24 @@ export function ImageLightbox({
   open: boolean;
   onClose: () => void;
 }) {
+  useEffect(() => {
+    if (!open) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      onClose();
+    }
+
+    window.addEventListener("keydown", handleKeyDown, { capture: true });
+
+    return () =>
+      window.removeEventListener("keydown", handleKeyDown, { capture: true });
+  }, [onClose, open]);
+
   if (!open) return null;
 
   return createPortal(
@@ -169,6 +215,98 @@ export function ImageLightbox({
       </button>
       <figure onMouseDown={(event) => event.stopPropagation()}>
         <img src={src} alt={alt} />
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    </div>,
+    document.body,
+  );
+}
+
+export function ImageStackLightbox({
+  images,
+  index,
+  onChange,
+  onClose,
+}: {
+  images: ImageItem[];
+  index: number;
+  onChange: (index: number) => void;
+  onClose: () => void;
+}) {
+  const currentImage = images[index];
+  const hasSeveralImages = images.length > 1;
+  const caption = currentImage.lightboxCaption ?? currentImage.caption;
+
+  function showPrevious() {
+    onChange(index === 0 ? images.length - 1 : index - 1);
+  }
+
+  function showNext() {
+    onChange(index === images.length - 1 ? 0 : index + 1);
+  }
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      const shouldHandle =
+        event.key === "Escape" ||
+        (hasSeveralImages &&
+          (event.key === "ArrowLeft" || event.key === "ArrowRight"));
+
+      if (!shouldHandle) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
+      if (event.key === "Escape") onClose();
+      if (!hasSeveralImages) return;
+      if (event.key === "ArrowLeft") showPrevious();
+      if (event.key === "ArrowRight") showNext();
+    }
+
+    window.addEventListener("keydown", handleKeyDown, { capture: true });
+
+    return () =>
+      window.removeEventListener("keydown", handleKeyDown, { capture: true });
+  });
+
+  return createPortal(
+    <div className={styles.lightbox} onMouseDown={onClose}>
+      <button
+        className={styles.lightbox_close}
+        type="button"
+        aria-label="Закрыть изображение"
+        onClick={onClose}
+      >
+        <HiXMark aria-hidden="true" />
+      </button>
+      {hasSeveralImages && (
+        <>
+          <button
+            className={`${styles.lightbox_nav} ${styles.lightbox_nav_prev}`}
+            type="button"
+            aria-label="Предыдущее изображение"
+            onMouseDown={(event) => event.stopPropagation()}
+            onClick={showPrevious}
+          >
+            <HiChevronLeft aria-hidden="true" />
+          </button>
+          <button
+            className={`${styles.lightbox_nav} ${styles.lightbox_nav_next}`}
+            type="button"
+            aria-label="Следующее изображение"
+            onMouseDown={(event) => event.stopPropagation()}
+            onClick={showNext}
+          >
+            <HiChevronRight aria-hidden="true" />
+          </button>
+          <span className={styles.lightbox_counter}>
+            {index + 1} / {images.length}
+          </span>
+        </>
+      )}
+      <figure onMouseDown={(event) => event.stopPropagation()}>
+        <img src={currentImage.src} alt={currentImage.alt} />
         {caption && <figcaption>{caption}</figcaption>}
       </figure>
     </div>,
