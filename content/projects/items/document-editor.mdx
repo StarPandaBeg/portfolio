@@ -1,19 +1,104 @@
-import { ProjectNote, TechStack } from "@/components/mdx/mdx-components";
+import {
+  ImageStack,
+  MdxColumns,
+  MdxCard,
+  MdxGrid,
+  MetricCard,
+  ProjectNote,
+  TechStack,
+  LocalVideo,
+} from "@/components/mdx/mdx-components";
+import { Link } from "react-router";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 
 export const project = {
   slug: "document-editor",
   order: 3,
   title: "Онлайн-редактор документов",
-  description:
-    "Редактор документов с совместным доступом и функционалом согласующих",
-  stack: ["React", "TypeScript", "TipTap", "yJS", "NestJS"],
+  description: "Редактор документов с совместным доступом и функционалом согласующих",
+  stack: [
+    "React",
+    "TypeScript",
+    "TipTap",
+    "yJS",
+    "NestJS",
+    "NodeJS",
+    "PostgreSQL",
+    "Docker",
+  ],
   image: "/projects/word_1.png",
-  detailsVisible: false,
 };
 
-<p>{project.description}</p>
-<TechStack items={project.stack} />
-<ProjectNote title="Что внутри">
-  Редактирование документов в браузере, сценарии согласования, совместный
-  доступ и интеграция редактора TipTap.
-</ProjectNote>
+<MdxColumns ratio="1:2">
+  <div>
+    <LocalVideo
+      src="/projects/word_1.mp4"
+      caption="Рекламный ролик продукта"
+    />
+    <ImageStack
+      zoomable
+      images={[
+        {
+          src: "/projects/word_1.png",
+          alt: "Главный экран редактора",
+          lightboxCaption: "Главный экран редактора",
+        },
+        {
+          src: "/projects/word_3.png",
+          alt: "Функционал совместного доступа",
+          lightboxCaption: "Настройка совместного доступа",
+        },
+        {
+          src: "/projects/word_4.png",
+          alt: "Функционал согласующих",
+          lightboxCaption: "Настройка согласующих",
+        },
+        {
+          src: "/projects/word_5.png",
+          alt: "Поиск в системе",
+          lightboxCaption: "Поиск в системе",
+        },
+      ]}
+    />
+  </div>
+  <div className="text-column">
+    <ProjectNote title="Описание проекта">
+      <p>
+        Корпоративный аналог **Microsoft Word**, предназначенный для совместной работы с документами прямо в браузере. Программа поддерживает одновременное редактирование несколькими пользователями, систему комментариев, согласование документов, контроль версий и другие инструменты.
+      </p>
+      {/* <br/>
+      <ul>
+        <li>Создание, редактирование и форматирование документов</li>
+        <li>Поддержка импорта и экспорта в формате DOCX и PDF</li>
+        <li>Совместное редактирование и комментирование в реальном времени</li>
+        <li>Функционал согласования документов</li>
+        <li>История изменений и версий</li>
+      </ul> */}
+    </ProjectNote>
+
+    <ImageStack
+      images={[
+        {
+          src: "/projects/word_2.png",
+        },
+      ]}
+    />
+
+    <h3>Моя роль</h3>
+    <ul>
+      <li>**Ведущая разработка функциональности** корпоративного онлайн-редактора документов</li>
+      <li>Проектирование и реализация ключевых модулей: совместное редактирование, комментарии, версионирование, согласование, импорт и экспорт документов</li>
+      <li>Разработка сложной клиентской бизнес-логики и пользовательских сценариев редактора</li>
+      <li>**Ведение технической документации** по проекту</li>
+      <li>Подготовка демонстрационных материалов и участие в презентации возможностей продукта</li>
+    </ul>
+
+    <ProjectNote>
+      Полный цикл подготовки проекта: от проектирования и реализации функциональности до создания документации, презентации и демонстрации продукта.
+    </ProjectNote>
+
+    <h3>Технологии</h3>
+    <TechStack items={project.stack} />
+
+  </div>
+</MdxColumns>
