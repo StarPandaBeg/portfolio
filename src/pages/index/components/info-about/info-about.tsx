@@ -11,7 +11,47 @@ import styles from "./info-about.module.scss";
 
 export type InfoAboutProps = HTMLAttributes<HTMLDivElement>;
 
+const CAREER_START_YEAR = 2024;
+const CAREER_START_MONTH = 11;
+
+function getYearWord(years: number) {
+  const lastTwoDigits = years % 100;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return "лет";
+
+  const lastDigit = years % 10;
+
+  if (lastDigit === 1) return "год";
+  if (lastDigit >= 2 && lastDigit <= 4) return "года";
+
+  return "лет";
+}
+
+function getCommercialExperience(date = new Date()) {
+  const monthsSinceStart = Math.max(
+    0,
+    (date.getFullYear() - CAREER_START_YEAR) * 12 +
+      date.getMonth() -
+      CAREER_START_MONTH,
+  );
+  const fullYears = Math.floor(monthsSinceStart / 12);
+  const remainingMonths = monthsSinceStart % 12;
+
+  if (remainingMonths >= 10) {
+    const nextYear = fullYears + 1;
+    return `${nextYear} ${getYearWord(nextYear)}`;
+  }
+
+  if (remainingMonths >= 6) {
+    return `${fullYears},5 года`;
+  }
+
+  return `${fullYears}+ ${getYearWord(fullYears)}`;
+}
+
 export default function InfoAbout({ className, ...props }: InfoAboutProps) {
+  const commercialExperience = getCommercialExperience();
+
   return (
     <section className={cn(styles.about, className)} {...props}>
       <img className={styles.about_img} src={catImg} alt="" />
@@ -27,7 +67,7 @@ export default function InfoAbout({ className, ...props }: InfoAboutProps) {
           <li>
             <IconCard
               icon={HiMiniBuildingOffice2}
-              header="1.5+ года"
+              header={commercialExperience}
               content="коммерческого опыта"
               slim
             />
